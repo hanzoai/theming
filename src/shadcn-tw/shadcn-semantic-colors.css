@@ -1,0 +1,78 @@
+/*
+ * shadcn semantic tokens.
+ *
+ * Maps shadcn's expected CSS variable names to @hanzo/branding palette steps.
+ * Requires tw-theme-palettes.css (from the org brand package) to be loaded first.
+ */
+
+@theme {
+  --radius: 0.625rem;
+}
+
+:root {
+  --background: var(--color-neutral-1);
+  --foreground: var(--color-neutral-11);
+  --card: var(--color-neutral-2);
+  --card-foreground: var(--color-neutral-11);
+  --popover: var(--color-neutral-1);
+  --popover-foreground: var(--color-neutral-11);
+  --primary: var(--color-primary-10);
+  --primary-foreground: var(--color-primary-1);
+  --secondary: var(--color-neutral-3);
+  --secondary-foreground: var(--color-neutral-11);
+  --muted: var(--color-neutral-3);
+  --muted-foreground: var(--color-neutral-8);
+  --accent: var(--color-neutral-3);
+  --accent-foreground: var(--color-neutral-11);
+  --destructive: var(--color-danger-9);
+  --border: var(--color-neutral-4);
+  --input: var(--color-neutral-5);
+  --ring: var(--color-primary-8);
+  --chart-1: var(--color-primary-8);
+  --chart-2: var(--color-success-8);
+  --chart-3: var(--color-warning-8);
+  --chart-4: var(--color-info-8);
+  --chart-5: var(--color-danger-8);
+  --sidebar: var(--color-neutral-2);
+  --sidebar-foreground: var(--color-neutral-11);
+  --sidebar-primary: var(--color-primary-10);
+  --sidebar-primary-foreground: var(--color-primary-1);
+  --sidebar-accent: var(--color-neutral-3);
+  --sidebar-accent-foreground: var(--color-neutral-11);
+  --sidebar-border: var(--color-neutral-4);
+  --sidebar-ring: var(--color-primary-8);
+}
+
+[data-color-scheme='dark'] {
+  --background: var(--color-neutral-1);
+  --foreground: var(--color-neutral-11);
+  --card: var(--color-neutral-2);
+  --card-foreground: var(--color-neutral-11);
+  --popover: var(--color-neutral-2);
+  --popover-foreground: var(--color-neutral-11);
+  --primary: var(--color-primary-3);
+  --primary-foreground: var(--color-primary-12);
+  --secondary: var(--color-neutral-3);
+  --secondary-foreground: var(--color-neutral-11);
+  --muted: var(--color-neutral-3);
+  --muted-foreground: var(--color-neutral-8);
+  --accent: var(--color-neutral-3);
+  --accent-foreground: var(--color-neutral-11);
+  --destructive: var(--color-danger-4);
+  --border: var(--color-neutral-4);
+  --input: var(--color-neutral-5);
+  --ring: var(--color-primary-5);
+  --chart-1: var(--color-primary-5);
+  --chart-2: var(--color-success-5);
+  --chart-3: var(--color-warning-5);
+  --chart-4: var(--color-info-5);
+  --chart-5: var(--color-danger-5);
+  --sidebar: var(--color-neutral-2);
+  --sidebar-foreground: var(--color-neutral-11);
+  --sidebar-primary: var(--color-primary-3);
+  --sidebar-primary-foreground: var(--color-primary-12);
+  --sidebar-accent: var(--color-neutral-3);
+  --sidebar-accent-foreground: var(--color-neutral-11);
+  --sidebar-border: var(--color-neutral-4);
+  --sidebar-ring: var(--color-primary-5);
+}
