@@ -1,6 +1,6 @@
 {
   "name": "@hanzo/branding",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Theme engine, palette generation, and themed components for Hanzo-powered apps",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
