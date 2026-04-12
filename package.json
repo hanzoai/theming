@@ -1,0 +1,47 @@
+{
+  "name": "@hanzo/branding",
+  "version": "0.1.0",
+  "description": "Theme engine, palette generation, and themed components for Hanzo-powered apps",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./components": "./src/components/index.ts",
+    "./components/*": "./src/components/*.tsx",
+    "./palette-utils": "./src/palette-utils.ts",
+    "./create-gui-config": "./src/create-gui-config.ts"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "tc": "tsc --noEmit",
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "pub": "./scripts/publish.sh"
+  },
+  "dependencies": {
+    "@hanzo/gui": "4.3.0",
+    "@hanzogui/config-default": "3.0.6",
+    "@hanzogui/shorthands": "3.0.6",
+    "@hanzogui/web": "3.0.6",
+    "@hanzogui/theme-builder": "3.0.6"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.4",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "author": "Hanzo AI",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hanzoai/branding"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
