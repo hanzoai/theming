@@ -5,13 +5,7 @@
  * by passing a fonts object to createTamaguiConfig().
  */
 
-export interface FontDef {
-  family: string
-  size: Record<number | 'true', number>
-  lineHeight: Record<number | 'true', number>
-  weight: Record<number, string>
-  letterSpacing: Record<string | number, number>
-}
+import type { FontDef } from '../types'
 
 export const DEFAULT_BODY_FONT: FontDef = {
   family: 'ui-sans-serif, system-ui, -apple-system, sans-serif',

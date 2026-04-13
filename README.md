@@ -19,7 +19,7 @@ pnpm add @hanzo/branding
 ### @hanzo/gui (Tamagui)
 
 ```typescript
-import { createTamaguiConfig } from '@hanzo/branding/tg'
+import { createTamaguiConfig } from '@hanzo/branding/tg-config'
 import { GuiProvider } from '@hanzo/gui'
 
 const config = createTamaguiConfig({
@@ -43,11 +43,11 @@ In your app's main CSS:
 ```css
 @import 'tailwindcss';
 @import '@liquidityio/brand/brand-palettes.css';
-@import '@hanzo/branding/shadcn-semantic-colors.css';
+@import '@hanzo/branding/shadcn-semantic-tw-colors.css';
 ```
 
 - `brand-palettes.css` — org-specific, generated in `<org>/brand` from its `ThemesConfig`
-- `shadcn-semantic-colors.css` — maps 12-step palettes to semantic color values expected by shadcn (static css)
+- `shadcn-semantic-tw-colors.css` — maps 12-step palettes to semantic color values expected by shadcn (static css)
 
 If you need to override other Tailwind v4 defaults (spacing, breakpoints, etc.), add your own CSS file with an `@theme` block.
 
@@ -96,7 +96,7 @@ Each theme can be specified as:
 `createTamaguiConfig()` produces a complete Tamagui config from your supplied values:
 
 ```typescript
-import { createTamaguiConfig } from '@hanzo/branding/tg'
+import { createTamaguiConfig } from '@hanzo/branding/tg-config'
 
 const config = createTamaguiConfig({
   themes: {
@@ -142,9 +142,9 @@ Light/dark is handled structurally — the active scheme is inherited from the r
 
 * `generateTwThemePalettesCss(config?)`: Produces `--color-{theme}-{1..12}` for all 7 themes/palettes in `:root` and `[data-color-scheme='dark']`. 
 
-### Shadcn semantic colors are derived in `shadcn-semantic-colors.css`
+### Shadcn semantic colors are derived in `shadcn-semantic-tw-colors.css`
 
-* `@hanzo/branding/shadcn-semantic-colors.css` — Derives shadcn's expected color tokens (`--background`, `--primary`, `--destructive`...) from the palettes as css vars (`var(--color-neutral-1)`, `var(--color-primary-10)`...) that were generated from the org's ThemesConfig. Simply maps, so does not vary. Just needs to be included in the app's css file after `brand-palettes.css`.
+* `@hanzo/branding/shadcn-semantic-tw-colors.css` — Derives shadcn's expected color tokens (`--background`, `--primary`, `--destructive`...) from the palettes as css vars (`var(--color-neutral-1)`, `var(--color-primary-10)`...) that were generated from the org's ThemesConfig. Simply maps, so does not vary. Just needs to be included in the app's css file after `brand-palettes.css`.
 
 
 
@@ -206,17 +206,17 @@ src/
 ├── shadcn-tw/               # Tailwind / shadcn
 │   ├── utils.ts             # generateTwThemePalettesCss
 │   ├── generate-palettes.ts # CLI: reads brand.json, writes brand-palettes.css
-│   └── shadcn-semantic-colors.css  # static — shadcn semantic color mappings
+│   └── shadcn-semantic-tw-colors.css  # static — shadcn semantic color mappings
 ```
 
 ## Export paths
 
 | Path | What |
 |------|------|
-| `@hanzo/branding/tg` | `createTamaguiConfig`, types, defaults, and components |
-| `@hanzo/branding/components` | Tamagui components only |
-| `@hanzo/branding/tg-defaults` | Defaults only (seeds, size, space, fonts) |
-| `@hanzo/branding/shadcn-semantic-colors.css` | Static CSS — maps 12-step palettes to semantic color values expected by shadcn |
+| `@hanzo/branding/tg-config` | `createTamaguiConfig` and types |
+| `@hanzo/branding/tg-components` | Tamagui components |
+| `@hanzo/branding/tg-config-defaults` | Defaults (seeds, size, space, fonts) |
+| `@hanzo/branding/shadcn-semantic-tw-colors.css` | Static CSS — maps 12-step palettes to semantic color values expected by shadcn |
 
 ## For org brand packages
 
@@ -232,7 +232,7 @@ An org brand package depends on `@hanzo/branding` and provides just data:
 The index calls `createTamaguiConfig` with the org's seeds and fonts:
 
 ```typescript
-import { createTamaguiConfig } from '@hanzo/branding/tg'
+import { createTamaguiConfig } from '@hanzo/branding/tg-config'
 import brandJson from './brand/brand.json'
 
 export const tamaguiConfig = createTamaguiConfig({

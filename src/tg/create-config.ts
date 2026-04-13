@@ -11,7 +11,6 @@ import { createThemes } from '@hanzogui/theme-builder'
 import { shorthands as baseShorthands } from '@hanzogui/shorthands/v4'
 import { getDefaultGuiConfig } from '@hanzogui/config-default'
 
-import type { ThemesConfig } from '../types'
 import { resolveThemeDesc } from '../palette-utils'
 import { DEFAULT_SEEDS } from './defaults/themes'
 import { DEFAULT_SIZE, DEFAULT_SPACE } from './defaults/spacing'
@@ -19,21 +18,11 @@ import {
   DEFAULT_BODY_FONT,
   DEFAULT_HEADING_FONT,
   DEFAULT_MONO_FONT,
-  type FontDef,
 } from './defaults/fonts'
+import type { FontDef, TamaguiConfigOptions } from './types'
+import type { Palette12, ThemeSeed, ThemeDesc, ThemesConfig } from '../types'
 
-// ── types ────────────────────────────────────────────────────
-
-export interface TamaguiConfigOptions {
-  themes?: ThemesConfig | null
-  fonts?: {
-    body?: FontDef | null
-    heading?: FontDef | null
-    mono?: FontDef | null
-  } | null
-  size?: Record<string, number> | null
-  space?: Record<string, number> | null
-}
+export type { FontDef, TamaguiConfigOptions, Palette12, ThemeSeed, ThemeDesc, ThemesConfig }
 
 // ── shorthands ───────────────────────────────────────────────
 
