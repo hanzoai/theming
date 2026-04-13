@@ -1,11 +1,11 @@
 {
   "name": "@hanzo/branding",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Theme engine, palette generation, and themed components for Hanzo-powered apps",
   "exports": {
     "./tg-config": "./src/tg/create-config.ts",
     "./tg-components": "./src/tg/components/index.ts",
-    "./tg-config-defaults": "./src/tg/defaults/index.ts",   
+    "./tg-config-defaults": "./src/tg/defaults/index.ts",
     "./shadcn-semantic-tw-colors.css": "./src/shadcn-tw/shadcn-semantic-colors.css"
   },
   "bin": {
