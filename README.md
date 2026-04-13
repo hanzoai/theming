@@ -213,8 +213,9 @@ src/
 
 | Path | What |
 |------|------|
-| `@hanzo/branding/tg` | `createTamaguiConfig`, defaults, and components |
+| `@hanzo/branding/tg` | `createTamaguiConfig`, types, defaults, and components |
 | `@hanzo/branding/components` | Tamagui components only |
+| `@hanzo/branding/tg-defaults` | Defaults only (seeds, size, space, fonts) |
 | `@hanzo/branding/shadcn-semantic-colors.css` | Static CSS — maps 12-step palettes to semantic color values expected by shadcn |
 
 ## For org brand packages

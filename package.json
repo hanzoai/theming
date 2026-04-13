@@ -5,6 +5,7 @@
   "exports": {
     "./tg": "./src/tg/index.ts",
     "./components": "./src/tg/components/index.ts",
+    "./tg-defaults": "./src/tg/defaults/index.ts",   
     "./shadcn-semantic-colors.css": "./src/shadcn-tw/shadcn-semantic-colors.css"
   },
   "bin": {
