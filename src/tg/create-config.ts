@@ -24,6 +24,86 @@ import type { Palette12, ThemeSeed, ThemeDesc, ThemesConfig } from '../types'
 
 export type { FontDef, TamaguiConfigOptions, Palette12, ThemeSeed, ThemeDesc, ThemesConfig }
 
+// ────────────────────────────────────────────────────────────
+// Type augmentation — activates when this module is imported.
+// Tells TypeScript about the shorthand props (w, h, bg, etc.)
+// we register in createTamaguiConfig below, so <XStack>, <Text>, etc.
+// accept them without a cast.
+// ────────────────────────────────────────────────────────────
+
+declare module '@hanzogui/web' {
+  interface GuiCustomConfig {
+    shorthands: {
+      // Dimensions
+      w: 'width'
+      h: 'height'
+      // Flex
+      f: 'flex'
+      fb: 'flexBasis'
+      fd: 'flexDirection'
+      fw: 'flexWrap'
+      grow: 'flexGrow'
+      shrink: 'flexShrink'
+      items: 'alignItems'
+      justify: 'justifyContent'
+      self: 'alignSelf'
+      content: 'alignContent'
+      // Margin
+      m: 'margin'
+      mt: 'marginTop'
+      mb: 'marginBottom'
+      ml: 'marginLeft'
+      mr: 'marginRight'
+      mx: 'marginHorizontal'
+      my: 'marginVertical'
+      // Padding
+      p: 'padding'
+      pt: 'paddingTop'
+      pb: 'paddingBottom'
+      pl: 'paddingLeft'
+      pr: 'paddingRight'
+      px: 'paddingHorizontal'
+      py: 'paddingVertical'
+      // Background
+      bg: 'backgroundColor'
+      // Border width
+      bw: 'borderWidth'
+      btw: 'borderTopWidth'
+      bbw: 'borderBottomWidth'
+      blw: 'borderLeftWidth'
+      brw: 'borderRightWidth'
+      // Border color
+      bc: 'borderColor'
+      btc: 'borderTopColor'
+      bbc: 'borderBottomColor'
+      blc: 'borderLeftColor'
+      brc: 'borderRightColor'
+      // Border radius
+      rounded: 'borderRadius'
+      // Overflow / opacity
+      ov: 'overflow'
+      op: 'opacity'
+      // Position
+      pos: 'position'
+      t: 'top'
+      b: 'bottom'
+      l: 'left'
+      r: 'right'
+      z: 'zIndex'
+      // Min/Max
+      maxW: 'maxWidth'
+      maxH: 'maxHeight'
+      minW: 'minWidth'
+      minH: 'minHeight'
+      // Text
+      text: 'textAlign'
+      select: 'userSelect'
+      // Cursor
+      cur: 'cursor'
+    }
+  }
+}
+
 // ── shorthands ───────────────────────────────────────────────
 
 const shorthands = {
