@@ -1,3 +1,6 @@
+// Side-effect: activates GuiCustomConfig shorthand augmentation
+import '../create-config'
+
 export { default as ThemedButton } from './themed-button'
 export { default as GhostButton } from './ghost-button'
 export { default as OutlineButton } from './outline-button'
