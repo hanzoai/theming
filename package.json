@@ -3,10 +3,10 @@
   "version": "0.1.2",
   "description": "Theme engine, palette generation, and themed components for Hanzo-powered apps",
   "exports": {
-    "./tg": "./src/tg/index.ts",
-    "./components": "./src/tg/components/index.ts",
-    "./tg-defaults": "./src/tg/defaults/index.ts",   
-    "./shadcn-semantic-colors.css": "./src/shadcn-tw/shadcn-semantic-colors.css"
+    "./tg-config": "./src/tg/create-config.ts",
+    "./tg-components": "./src/tg/components/index.ts",
+    "./tg-config-defaults": "./src/tg/defaults/index.ts",   
+    "./shadcn-semantic-tw-colors.css": "./src/shadcn-tw/shadcn-semantic-colors.css"
   },
   "bin": {
     "generate-palettes": "./dist/generate-palettes.js"

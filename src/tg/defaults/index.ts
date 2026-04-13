@@ -4,5 +4,4 @@ export {
   DEFAULT_BODY_FONT as bodyFont,
   DEFAULT_HEADING_FONT as headingFont,
   DEFAULT_MONO_FONT as monoFont,
-  type FontDef,
 } from './fonts'
