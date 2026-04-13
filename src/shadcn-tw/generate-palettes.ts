@@ -20,7 +20,7 @@ try {
   json = JSON.parse(readFileSync(brandFile, 'utf-8'))
 }
 catch (e) {
-  console.error(`Error: could not read ${brandFile}`)
+  console.error(`Error reading ${brandFile}: ${(e as Error).message}`)
   process.exit(1)
 }
 
