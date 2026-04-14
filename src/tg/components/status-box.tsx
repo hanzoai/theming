@@ -1,4 +1,5 @@
-import { Text, Theme, type ThemeName, XStack, YStack } from '@hanzo/gui'
+import { Text, XStack, YStack } from '@hanzo/gui'
+import { Theme, type ThemeName } from '@hanzogui/web'
 
 const StatusBox: React.FC<{
   title: string,
