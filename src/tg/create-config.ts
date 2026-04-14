@@ -186,10 +186,10 @@ export function createTamaguiConfig(options: TamaguiConfigOptions = {}) {
       const neutral = isDark ? neutralPalettes.dark : neutralPalettes.light
 
       // Contrast text for solid action surfaces ($color9 = step 9 = seed).
-      // White text if the fill is dark, near-black if the fill is light.
-      const lightText = neutral[11] // grey12 — near-white in dark, near-black in light
-      const darkText = neutral[0]   // grey1  — near-black in dark, near-white in light
-      let solidText = isDark ? lightText : darkText
+      // Use white text on dark fills, dark text on light fills.
+      const whiteish = isDark ? neutral[11] : neutral[0]
+      const blackish = isDark ? neutral[0] : neutral[11]
+      let solidText = isDark ? whiteish : blackish
       const seedHex = theme?.color9
       if (seedHex && seedHex.startsWith('#')) {
         const n = parseInt(seedHex.replace('#', ''), 16)
@@ -197,7 +197,7 @@ export function createTamaguiConfig(options: TamaguiConfigOptions = {}) {
         const g = ((n >> 8) & 0xff) / 255
         const b = (n & 0xff) / 255
         const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b
-        solidText = lum < 0.5 ? lightText : darkText
+        solidText = lum < 0.5 ? whiteish : blackish
       }
 
       return {
