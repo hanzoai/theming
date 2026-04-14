@@ -20,6 +20,9 @@ importers:
       '@hanzogui/theme-builder':
         specifier: 3.0.6
         version: 3.0.6(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
+      '@hanzogui/web':
+        specifier: 3.0.6
+        version: 3.0.6(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
       react:
         specifier: '>=18'
         version: 19.2.5
