@@ -186,12 +186,12 @@ export function createTamaguiConfig(options: TamaguiConfigOptions = {}) {
       const neutral = isDark ? neutralPalettes.dark : neutralPalettes.light
 
       // Contrast text for solid action surfaces ($color9 = step 9 = seed).
-      // Override accentColor so $accentColor gives white text on dark fills
-      // and dark text on light fills. This flows through Tamagui's standard
-      // CSS variable system (--accentColor).
+      // White text on dark fills, dark text on light fills.
+      // Stored as `solidText` — a custom theme key consumed via useTheme()
+      // since Tamagui's CSS variable injection only covers template-standard keys.
       const whiteish = isDark ? neutral[11] : neutral[0]
       const blackish = isDark ? neutral[0] : neutral[11]
-      let accentColor = isDark ? whiteish : blackish
+      let solidText = isDark ? whiteish : blackish
       const seedHex = theme?.color9
       if (seedHex && seedHex.startsWith('#')) {
         const n = parseInt(seedHex.replace('#', ''), 16)
@@ -199,7 +199,7 @@ export function createTamaguiConfig(options: TamaguiConfigOptions = {}) {
         const g = ((n >> 8) & 0xff) / 255
         const b = (n & 0xff) / 255
         const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b
-        accentColor = lum < 0.5 ? whiteish : blackish
+        solidText = lum < 0.5 ? whiteish : blackish
       }
 
       return {
@@ -215,7 +215,7 @@ export function createTamaguiConfig(options: TamaguiConfigOptions = {}) {
         grey10: neutral[9],
         grey11: neutral[10],
         grey12: neutral[11],
-        accentColor,
+        solidText,
       } as Record<string, string>
     },
   })
