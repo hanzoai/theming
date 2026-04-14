@@ -1,6 +1,6 @@
 {
   "name": "@hanzo/branding",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "Theme engine, palette generation, and themed components for Hanzo-powered apps",
   "exports": {
     "./tg-config": {
