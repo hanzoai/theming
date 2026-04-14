@@ -1,20 +1,19 @@
-import { Text, Theme, type ThemeName, XStack } from '@hanzo/gui'
+import { Text, Theme, type ThemeName, XStack, useTheme } from '@hanzo/gui'
 
-const ThemedButton: React.FC<{
+const ThemedButtonInner: React.FC<{
   children: React.ReactNode
   onPress?: () => void
   disabled?: boolean
-  theme?: ThemeName | null
-  w?: string | number
-  f?: number
 } & Record<string, any>> = ({
   children,
   onPress,
   disabled,
-  theme = 'primary' as ThemeName,
   ...rest
-}) => (
-  <Theme name={theme}>
+}) => {
+  const t = useTheme()
+  const solidText = (t as any).solidText?.val ?? '#fff'
+
+  return (
     <XStack
       justify="center"
       items="center"
@@ -32,11 +31,27 @@ const ThemedButton: React.FC<{
       {...rest}
     >
       {typeof children === 'string' ? (
-        <Text color="$accentColor" fontWeight="500" fontSize="$3">{children}</Text>
+        <Text color={solidText} fontWeight="500" fontSize="$3">{children}</Text>
       ) : (
         children
       )}
     </XStack>
+  )
+}
+
+const ThemedButton: React.FC<{
+  children: React.ReactNode
+  onPress?: () => void
+  disabled?: boolean
+  theme?: ThemeName | null
+  w?: string | number
+  f?: number
+} & Record<string, any>> = ({
+  theme = 'primary' as ThemeName,
+  ...rest
+}) => (
+  <Theme name={theme}>
+    <ThemedButtonInner {...rest} />
   </Theme>
 )
 
