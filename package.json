@@ -3,9 +3,18 @@
   "version": "3.2.1",
   "description": "Theme engine, palette generation, and themed components for Hanzo-powered apps",
   "exports": {
-    "./tg-config": "./src/tg/create-config.ts",
-    "./tg-components": "./src/tg/components/index.ts",
-    "./tg-config-defaults": "./src/tg/defaults/index.ts",
+    "./tg-config": {
+      "types": "./dist/tg/create-config.d.ts",
+      "import": "./dist/tg/create-config.js"
+    },
+    "./tg-components": {
+      "types": "./dist/tg/components/index.d.ts",
+      "import": "./dist/tg/components/index.js"
+    },
+    "./tg-config-defaults": {
+      "types": "./dist/tg/defaults/index.d.ts",
+      "import": "./dist/tg/defaults/index.js"
+    },
     "./shadcn-semantic-tw-colors.css": "./src/shadcn-tw/shadcn-semantic-colors.css"
   },
   "bin": {
@@ -17,14 +26,14 @@
   ],
   "scripts": {
     "tc": "tsc --noEmit",
-    "build": "tsup src/shadcn-tw/generate-palettes.ts --format cjs,esm --dts --clean",
-    "dev": "tsup src/shadcn-tw/generate-palettes.ts --format cjs,esm --dts --watch",
+    "build": "rm -rf dist && tsc && tsup src/shadcn-tw/generate-palettes.ts --format cjs,esm --dts --outDir dist/shadcn-tw",
     "pub": "./scripts/publish.sh"
   },
   "dependencies": {
     "@hanzogui/config-default": "3.0.6",
     "@hanzogui/shorthands": "3.0.6",
-    "@hanzogui/theme-builder": "3.0.6"
+    "@hanzogui/theme-builder": "3.0.6",
+    "@hanzogui/web": "3.0.6"
   },
   "peerDependencies": {
     "@hanzo/gui": ">=4.3.2",
