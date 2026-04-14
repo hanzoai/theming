@@ -1,4 +1,5 @@
-import { Switch, Theme, type ThemeName } from '@hanzo/gui'
+import { Switch } from '@hanzo/gui'
+import { Theme, type ThemeName } from '@hanzogui/web'
 
 // A branded toggle switch. When checked, uses the primary theme;
 // when unchecked, uses neutral grey colors.

@@ -1,4 +1,5 @@
-import { Text, Theme, type ThemeName, XStack } from '@hanzo/gui'
+import { Text, XStack } from '@hanzo/gui'
+import { Theme, type ThemeName } from '@hanzogui/web'
 
 const ThemedButton: React.FC<{
   children: React.ReactNode
