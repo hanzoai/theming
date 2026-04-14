@@ -27,14 +27,14 @@ const ToggleSwitch: React.FC<{
       jc="center"
       px={2}
       bw={1}
-      bg={checked ? '$color9' : '$grey7'}
-      bc={checked ? '$color8' : '$grey8'}
+      bg={checked ? '$color9' : '$color7'}
+      bc={checked ? '$color8' : '$color8'}
       {...rest}
     >
       <Switch.Thumb
         animation="quick"
         size="$xs"
-        bg={checked ? '$grey1' : '$grey7'}
+        bg={checked ? '$background' : '$color7'}
         borderRadius={1000}
         my="auto"
       />

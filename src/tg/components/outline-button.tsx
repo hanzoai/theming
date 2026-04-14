@@ -17,18 +17,18 @@ const OutlineButton: React.FC<{
     h="$md"
     rounded="$6"
     px="$6"
-    bg="$grey2"
+    bg="$color2"
     bw={1}
-    bc="$grey6"
+    bc="$color6"
     cur="pointer"
     opacity={disabled ? 0.4 : 1}
-    hoverStyle={{ bg: '$grey3', bc: '$grey7' }}
-    pressStyle={{ bg: '$grey4', bc: '$grey7' }}
+    hoverStyle={{ bg: '$color3', bc: '$color7' }}
+    pressStyle={{ bg: '$color4', bc: '$color7' }}
     onPress={disabled ? undefined : onPress}
     {...rest}
   >
     {typeof children === 'string' ? (
-      <Text color="$grey12" fontWeight="500" fontSize="$3">{children}</Text>
+      <Text color="$color12" fontWeight="500" fontSize="$3">{children}</Text>
     ) : (
       children
     )}
