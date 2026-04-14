@@ -223,6 +223,7 @@ export function createTamaguiConfig(options: TamaguiConfigOptions = {}) {
   // Tokens
   const _defaultConfig = getDefaultGuiConfig('web')
   const tokens = {
+    color: _defaultConfig.tokens.color,
     size: sizeOverride ?? DEFAULT_SIZE,
     space: spaceOverride ?? DEFAULT_SPACE,
     radius: _defaultConfig.tokens.radius,
