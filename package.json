@@ -18,7 +18,7 @@
     "./shadcn-semantic-tw-colors.css": "./src/shadcn-tw/shadcn-semantic-colors.css"
   },
   "bin": {
-    "generate-palettes": "./dist/generate-palettes.js"
+    "generate-palettes": "./dist/shadcn-tw/generate-palettes.js"
   },
   "files": [
     "src",
