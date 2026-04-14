@@ -23,9 +23,9 @@ const GhostButton: React.FC<{
     h="$md"
     rounded="$4"
     bw={1}
-    bc="$grey1"
-    hoverStyle={{ bc: '$grey6', bg: '$grey2' }}
-    pressStyle={{ bc: '$grey6', bg: '$grey3' }}
+    bc="$color1"
+    hoverStyle={{ bc: '$color6', bg: '$color2' }}
+    pressStyle={{ bc: '$color6', bg: '$color3' }}
     cur="pointer"
     onPress={onPress}
     {...rest}
