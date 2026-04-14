@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@hanzo/gui':
-        specifier: 4.3.0
-        version: 4.3.0(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
+        specifier: 4.3.2
+        version: 4.3.2(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
       '@hanzogui/config-default':
         specifier: 3.0.6
         version: 3.0.6(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
@@ -290,8 +290,8 @@ packages:
   '@floating-ui/utils@0.2.11':
     resolution: {integrity: sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==}
 
-  '@hanzo/gui@4.3.0':
-    resolution: {integrity: sha512-sNAGZj//3ZDDLafsINr9e4+jy3c/hBpuOO0Dabb2crgOk0kNSd2fSyfOB5ortXLDuS5T7cbfhA4OcBFz/4zFFA==}
+  '@hanzo/gui@4.3.2':
+    resolution: {integrity: sha512-twUwhz4FCfvPCd9oelhwowu+q3huODoVPBZ8kZ5Dj6PiIBCEx7IIsU025QNnfhgztA584svqNJ/IFoJnswF3LQ==}
     peerDependencies:
       react: '>=19'
       react-native: '*'
@@ -581,8 +581,8 @@ packages:
     peerDependencies:
       react: '>=19'
 
-  '@hanzogui/fake-react-native@3.0.6':
-    resolution: {integrity: sha512-J+RCh0LWXUNlSc+Xu3+ZX/NYBxzDTjCPQIpjx5x6RbVLqRRLVeeogGs2BY6YaSzx2lkGbNNhUiOGCwxaKhOh/g==}
+  '@hanzogui/fake-react-native@4.3.1':
+    resolution: {integrity: sha512-KsqYysZXidl0fenmDfOLd30Ya7q399bRsHlltYmxo5njWjG0I8NdCwX26ncwyFr0x59p7JLC9gxTrIuGgkgp1A==}
 
   '@hanzogui/floating@3.0.0':
     resolution: {integrity: sha512-k9Qaf95BHphp+XkNLUeByVNbd+UXn5WDZIWjHQ8MpkteSYNVAAC4qTB2z9t1/1sjELRfEGm70lJFXVoo3ky9dg==}
@@ -2841,7 +2841,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.11': {}
 
-  '@hanzo/gui@4.3.0(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)':
+  '@hanzo/gui@4.3.2(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)':
     dependencies:
       '@hanzogui/accordion': 3.0.2(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
       '@hanzogui/adapt': 3.0.2(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
@@ -2854,6 +2854,7 @@ snapshots:
       '@hanzogui/checkbox-headless': 3.0.2(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
       '@hanzogui/collection': 3.0.2(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
       '@hanzogui/compose-refs': 3.0.6(react@19.2.5)
+      '@hanzogui/config-default': 3.0.6(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
       '@hanzogui/constants': 3.0.6(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
       '@hanzogui/context-menu': 3.0.2(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
       '@hanzogui/core': 3.0.6(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
@@ -2863,7 +2864,7 @@ snapshots:
       '@hanzogui/dismissable': 3.0.2(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
       '@hanzogui/element': 3.0.6(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
       '@hanzogui/elements': 3.0.2(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
-      '@hanzogui/fake-react-native': 3.0.6
+      '@hanzogui/fake-react-native': 4.3.1
       '@hanzogui/focus-guard': 3.0.2(react@19.2.5)
       '@hanzogui/focus-scope': 3.0.2(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
       '@hanzogui/focusable': 3.0.2(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
@@ -2894,6 +2895,7 @@ snapshots:
       '@hanzogui/separator': 3.0.2(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
       '@hanzogui/shapes': 3.0.2(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
       '@hanzogui/sheet': 3.0.2(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
+      '@hanzogui/shorthands': 3.0.6(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
       '@hanzogui/slider': 3.0.2(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
       '@hanzogui/spacer': 3.0.2(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
       '@hanzogui/spinner': 3.0.2(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
@@ -2904,6 +2906,7 @@ snapshots:
       '@hanzogui/tabs-headless': 3.0.2(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
       '@hanzogui/text': 3.0.2(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
       '@hanzogui/theme': 3.0.6(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
+      '@hanzogui/theme-builder': 3.0.6(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
       '@hanzogui/toast': 3.0.2(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
       '@hanzogui/toggle-group': 3.0.2(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
       '@hanzogui/tooltip': 3.0.2(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)
@@ -3970,7 +3973,7 @@ snapshots:
       - sf-symbols-typescript
       - zeego
 
-  '@hanzogui/fake-react-native@3.0.6': {}
+  '@hanzogui/fake-react-native@4.3.1': {}
 
   '@hanzogui/floating@3.0.0(react-dom@19.2.5(react@19.2.5))(react-native@0.85.0(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.5))(react@19.2.5)':
     dependencies:
