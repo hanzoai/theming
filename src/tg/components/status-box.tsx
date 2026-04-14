@@ -17,7 +17,7 @@ const StatusBox: React.FC<{
       rounded="$6"
       px="$4"
       py="$3"
-      bg="$color2"
+      bg="$color4"
       bw={1}
       bc="$color6"
       $sm={{ px: '$3' }}
