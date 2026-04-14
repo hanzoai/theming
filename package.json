@@ -22,13 +22,12 @@
     "pub": "./scripts/publish.sh"
   },
   "dependencies": {
-    "@hanzo/gui": "4.3.2",
     "@hanzogui/config-default": "3.0.6",
     "@hanzogui/shorthands": "3.0.6",
-    "@hanzogui/theme-builder": "3.0.6",
-    "@hanzogui/web": "3.0.6"
+    "@hanzogui/theme-builder": "3.0.6"
   },
   "peerDependencies": {
+    "@hanzo/gui": ">=4.3.2",
     "react": ">=18"
   },
   "devDependencies": {
