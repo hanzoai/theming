@@ -32,7 +32,7 @@ const ThemedButton: React.FC<{
       {...rest}
     >
       {typeof children === 'string' ? (
-        <Text color="$solidText" fontWeight="500" fontSize="$3">{children}</Text>
+        <Text color="$accentColor" fontWeight="500" fontSize="$3">{children}</Text>
       ) : (
         children
       )}
