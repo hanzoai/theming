@@ -20,17 +20,19 @@ const ThemedButton: React.FC<{
       items="center"
       gap="$2"
       h="$md"
-      rounded="$6"
+      rounded="$4"
       px="$6"
-      bg="$background"
-      cur="pointer"
-      opacity={disabled ? 0.4 : 1}
-      pressStyle={{ bg: '$backgroundPress' }}
+      bg="$color9"
+      cur={disabled ? 'default' : 'pointer'}
+      opacity={disabled ? 0.6 : 1}
+      pointerEvents={disabled ? 'none' : 'auto'}
+      hoverStyle={disabled ? undefined : { bg: '$color10' }}
+      pressStyle={disabled ? undefined : { bg: '$color8' }}
       onPress={disabled ? undefined : onPress}
       {...rest}
     >
       {typeof children === 'string' ? (
-        <Text color="$color" fontWeight="500" fontSize="$3">{children}</Text>
+        <Text color="$solidText" fontWeight="500" fontSize="$3">{children}</Text>
       ) : (
         children
       )}

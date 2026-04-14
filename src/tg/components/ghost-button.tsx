@@ -21,11 +21,11 @@ const GhostButton: React.FC<{
     items="center"
     gap="$2"
     h="$md"
-    rounded="$6"
+    rounded="$4"
     bw={1}
-    bc="$background"
-    hoverStyle={{ bc: '$borderColorPress', bg: '$color2' }}
-    pressStyle={{ bc: '$borderColorPress', bg: '$color3' }}
+    bc="$grey1"
+    hoverStyle={{ bc: '$grey6', bg: '$grey2' }}
+    pressStyle={{ bc: '$grey6', bg: '$grey3' }}
     cur="pointer"
     onPress={onPress}
     {...rest}

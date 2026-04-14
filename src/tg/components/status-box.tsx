@@ -17,21 +17,21 @@ const StatusBox: React.FC<{
       rounded="$6"
       px="$4"
       py="$3"
-      bg="$background"
+      bg="$color2"
       bw={1}
-      bc="$borderColor"
+      bc="$color6"
       $sm={{ px: '$3' }}
       {...rest}
     >
       <XStack items="center" gap="$2" mb="$2">
         <Text fontSize="$3">{symbol}</Text>
-        <Text fontSize="$4" fontWeight="700" color="$color">
+        <Text fontSize="$4" fontWeight="700" color="$color12">
           {title}
         </Text>
       </XStack>
       <YStack gap="$1" ml="$1">
         {points.map((point: string, i: number) => (
-          <Text key={i} fontSize="$1" color="$color10">
+          <Text key={i} fontSize="$1" color="$color11">
             {'• '}{point}
           </Text>
         ))}
