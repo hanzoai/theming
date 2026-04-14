@@ -67,16 +67,53 @@ NOTE: Order matters here. `brand-palettes.css` define the vars, `shadcn-semantic
 
 ## Palette system
 
-A single hex seed produces a 12-step palette for both light and dark schemes:
+Follows the [Radix Colors](https://www.radix-ui.com/colors) semantic scale. Every seed produces a 12-step palette with fixed semantic roles:
 
-| Steps | Role | Examples |
-|-------|------|---------|
-| 1–3 | Backgrounds | base, raised, subtle |
-| 4–6 | Borders, separators | subtle, medium, strong |
-| 7–9 | Interactive states, quiet text | muted, secondary, quiet |
-| 10–12 | Foreground text | primary, strong, darkest |
+| Step | Role | Token |
+|------|------|-------|
+| 1 | App background | `$color1` / `$grey1` |
+| 2 | Subtle background | `$color2` / `$grey2` |
+| 3 | UI element background | `$color3` / `$grey3` |
+| 4 | Hovered UI element bg | `$color4` / `$grey4` |
+| 5 | Active / pressed UI bg | `$color5` / `$grey5` |
+| 6 | Subtle borders | `$color6` / `$grey6` |
+| 7 | UI borders / focus rings | `$color7` / `$grey7` |
+| 8 | Hovered borders | `$color8` / `$grey8` |
+| 9 | **Solid background (= seed)** | `$color9` / `$grey9` |
+| 10 | Hovered solid | `$color10` / `$grey10` |
+| 11 | Low-contrast text | `$color11` / `$grey11` |
+| 12 | High-contrast text | `$color12` / `$grey12` |
 
-Light palettes run lightest (1) to darkest (12). Dark palettes run darkest (1) to lightest (12). Saturation tapers at the extremes for a natural feel.
+### Two palette types
+
+**Neutral palette** — a grey ramp generated from the neutral seed. Injected into every Tamagui theme as `$grey1`–`$grey12`. Used for surfaces, borders, and body text regardless of which accent theme is active.
+
+**Accent palette** — a full 12-step scale from an accent seed (primary, danger, etc.). Steps 1–8 use the accent hue at progressively increasing saturation; step 9 is the literal seed; steps 10–12 blend toward the scheme foreground. Mapped to `$color1`–`$color12` by Tamagui's default template.
+
+An additional `$solidText` token is computed per-theme based on the luminance of step 9 — white text for dark fills, dark text for light fills.
+
+### Component convention
+
+Within any `<Theme>` wrapper, both palettes are available:
+
+- **`$grey`** — surfaces, borders, body text (neutral)
+- **`$color`** — accent fills, hover, press, accent-colored text
+- **`$solidText`** — text on solid action surfaces (auto-contrasted)
+
+```tsx
+<Theme name="primary">
+  {/* Card surface — grey */}
+  <YStack bg="$grey2" bc="$grey7">
+    <Text color="$grey12">Body text</Text>
+    {/* Button — accent */}
+    <XStack bg="$color9" hoverStyle={{ bg: '$color10' }}>
+      <Text color="$solidText">Submit</Text>
+    </XStack>
+  </YStack>
+</Theme>
+```
+
+This means a single `<Theme name="primary">` gives components access to both neutral surfaces and vivid accent fills — no nested theme wrappers needed.
 
 ## Theme seeds
 
@@ -135,15 +172,21 @@ const config = createTamaguiConfig({
 | `size` | `Record<string, number>` | Non-linear component size scale (20–144px) |
 | `space` | `Record<string, number>` | Linear 4px grid (0–96px) |
 
-Each theme seed becomes a Tamagui children theme. Components use standard theme wrapping:
+Each theme seed becomes a Tamagui children theme with both `$color` (accent) and `$grey` (neutral) tokens available:
 
 ```tsx
 <Theme name="primary">
-  <Button>Submit</Button>     {/* picks up primary palette automatically */}
+  {/* Grey for surfaces, accent for actions */}
+  <YStack bg="$grey2" bc="$grey7">
+    <Button bg="$color9">Submit</Button>
+  </YStack>
 </Theme>
 
 <Theme name="danger">
-  <Card>Error occurred</Card> {/* danger palette for bg, border, text */}
+  {/* Accent-tinted surface for alerts */}
+  <StatusBox bg="$color2" bc="$color6">
+    <Text color="$color11">Error occurred</Text>
+  </StatusBox>
 </Theme>
 ```
 
@@ -203,7 +246,7 @@ See [COMPONENTS.md](COMPONENTS.md) for usage and examples.
 ```
 src/
 ├── types.ts                              # Palette12, ThemeSeed, ThemeDesc, ThemesConfig
-├── palette-utils.ts                      # generatePalette, generatePalettes, resolveThemeDesc
+├── palette-utils.ts                      # generateNeutralPalette, generateAccentPalette, resolveThemeDesc
 ├── tg/                                   # Tamagui-specific
 │   ├── types.ts                          # FontDef, TamaguiConfigOptions
 │   ├── create-config.ts                  # createTamaguiConfig(options?)

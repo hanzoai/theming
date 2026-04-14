@@ -153,47 +153,68 @@ export function createTamaguiConfig(options: TamaguiConfigOptions = {}) {
   // Merge theme seeds with defaults
   const mergedThemes = { ...DEFAULT_SEEDS, ...(themesConfig ?? {}) }
 
-  // Base (neutral) palette
-  const { light: lightPalette, dark: darkPalette } = resolveThemeDesc(mergedThemes.neutral)
+  // ── Neutral (grey) palette — shared across all themes as $grey1…$grey12
+  const neutralPalettes = resolveThemeDesc(mergedThemes.neutral, 'neutral')
 
-  // Children theme palettes (all non-neutral themes)
+  // ── Accent palettes — each child theme gets a full Radix accent scale
   const { neutral: _neutral, ...childrenDescs } = mergedThemes
   const childrenThemes = Object.fromEntries(
     Object.entries(childrenDescs).map(([name, desc]) => {
-      const { light, dark } = resolveThemeDesc(desc)
+      const { light, dark } = resolveThemeDesc(desc, 'accent')
       return [name, { palette: { light, dark } }]
     }),
   )
 
-  // Primary palette for backwards-compat bridge tokens
-  const primaryPalettes = resolveThemeDesc(mergedThemes.primary)
+  // ── Tamagui theme generation ──────────────────────────────────
+  //
+  // Each accent theme's $color1…$color12 maps to its accent palette
+  // via Tamagui's default template. In addition, getTheme injects
+  // $grey1…$grey12 from the neutral palette into EVERY theme, so
+  // components always have access to neutral surface/border/text tokens.
+  //
+  // Component convention:
+  //   $grey  → surfaces, borders, body text (neutral)
+  //   $color → accent fills, hover, press, accent text
 
   const themes = createThemes({
     base: {
-      palette: { light: lightPalette, dark: darkPalette },
+      palette: { light: neutralPalettes.light, dark: neutralPalettes.dark },
     },
     childrenThemes,
-    getTheme: ({ palette }) => {
-      if (!palette || palette.length < 12) return {} as Record<string, string>
-      const bgIdx = 7
-      const borderIdx = bgIdx + 2
-      const isDark = palette[0] === darkPalette[0]
-      const primary = isDark ? primaryPalettes.dark : primaryPalettes.light
-      return {
-        backgroundHover: palette[bgIdx + 1] as string,
-        backgroundPress: palette[bgIdx + 2] as string,
-        borderColorHover: palette[borderIdx + 1] as string,
-        borderColorPress: palette[borderIdx + 2] as string,
-        // Bridge tokens — temporary until all consumers use <Theme> wrapping
-        brandPrimary: primary[9] as string,
-        brandPrimaryHover: primary[8] as string,
-        brandPrimaryPress: primary[7] as string,
-        brandPrimaryTrack: primary[5] as string,
-        brandDisabled: palette[7] as string,
-        brandPrimaryText: palette[0] as string,
-        toggleTrackOff: palette[7] as string,
-        toggleBorderOff: primary[8] as string,
+    getTheme: ({ name, theme }) => {
+      const isDark = name === 'dark' || name.startsWith('dark_')
+      const neutral = isDark ? neutralPalettes.dark : neutralPalettes.light
+
+      // Contrast text for solid action surfaces ($color9 = step 9 = seed).
+      // White text if the fill is dark, near-black if the fill is light.
+      const lightText = neutral[11] // grey12 — near-white in dark, near-black in light
+      const darkText = neutral[0]   // grey1  — near-black in dark, near-white in light
+      let solidText = isDark ? lightText : darkText
+      const seedHex = theme?.color9
+      if (seedHex && seedHex.startsWith('#')) {
+        const n = parseInt(seedHex.replace('#', ''), 16)
+        const r = ((n >> 16) & 0xff) / 255
+        const g = ((n >> 8) & 0xff) / 255
+        const b = (n & 0xff) / 255
+        const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b
+        solidText = lum < 0.5 ? lightText : darkText
       }
+
+      return {
+        grey1:  neutral[0],
+        grey2:  neutral[1],
+        grey3:  neutral[2],
+        grey4:  neutral[3],
+        grey5:  neutral[4],
+        grey6:  neutral[5],
+        grey7:  neutral[6],
+        grey8:  neutral[7],
+        grey9:  neutral[8],
+        grey10: neutral[9],
+        grey11: neutral[10],
+        grey12: neutral[11],
+        solidText,
+      } as Record<string, string>
     },
   })
 
