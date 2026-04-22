@@ -1,7 +1,5 @@
-import { XStack } from '@hanzo/gui'
+import { XStack } from 'hanzogui'
 
-// TODO: Move to @hanzo/gui as a library component with tests.
-//
 // A borderless button that reveals border + bg tint on hover/press.
 //
 // Usage:

@@ -2,7 +2,7 @@
  * Default font definitions using system fonts available on all platforms.
  *
  * Org brand packages can override these with custom fonts (e.g., Geist, Inter)
- * by passing a fonts object to createTamaguiConfig().
+ * by passing a fonts object to createHanzoguiConfig().
  */
 
 import type { FontDef } from '../types'
