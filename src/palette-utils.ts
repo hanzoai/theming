@@ -25,7 +25,7 @@
  * ACCENT palette — a full 12-step scale from an accent seed. Steps 1–8
  * use the accent hue at progressively increasing saturation; step 9 is
  * the literal seed; steps 10–12 blend toward the scheme foreground.
- * Mapped to $color1…$color12 by Tamagui's default template.
+ * Mapped to $color1…$color12 by Hanzogui's default template.
  *
  * Components use $grey for surfaces/borders/text and $color for accent
  * fills/hover/press — both available in every theme via one <Theme> wrapper.

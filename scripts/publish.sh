@@ -23,7 +23,7 @@ pnpm build
 npm version "$VERSION" --no-git-tag-version
 
 NEW_VERSION=$(node -p "require('./package.json').version")
-echo "Publishing @hanzo/branding@$NEW_VERSION"
+echo "Publishing @hanzo/theming@$NEW_VERSION"
 
 # Commit, tag, publish
 git add package.json
@@ -32,5 +32,5 @@ git tag "v$NEW_VERSION"
 npm publish --access public
 
 echo ""
-echo "Published @hanzo/branding@$NEW_VERSION"
+echo "Published @hanzo/theming@$NEW_VERSION"
 echo "Run 'git push && git push --tags' to push to origin."
