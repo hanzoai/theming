@@ -1,15 +1,16 @@
 /**
- * Factory: TamaguiConfigOptions → full Tamagui config.
+ * Factory: HanzoguiConfigOptions → full Hanzogui config.
  *
  * All options are optional — omitted values get sensible defaults.
  */
 
-import { createGui } from '@hanzo/gui'
+import { createHanzogui } from 'hanzogui'
 // @ts-ignore — createFont exists at runtime via @hanzogui/web but pnpm strict hoisting hides types
 import { createFont } from '@hanzogui/web'
 import { createThemes } from '@hanzogui/theme-builder'
 import { shorthands as baseShorthands } from '@hanzogui/shorthands/v4'
-import { getDefaultGuiConfig } from '@hanzogui/config-default'
+import { getDefaultHanzoguiConfig } from '@hanzogui/config-default'
+import { createAnimations } from '@hanzogui/animations-react-native'
 
 import { resolveThemeDesc } from '../palette-utils'
 import { DEFAULT_SEEDS } from './defaults/themes'
@@ -19,20 +20,20 @@ import {
   DEFAULT_HEADING_FONT,
   DEFAULT_MONO_FONT,
 } from './defaults/fonts'
-import type { FontDef, TamaguiConfigOptions } from './types'
+import type { FontDef, HanzoguiConfigOptions } from './types'
 import type { Palette12, ThemeSeed, ThemeDesc, ThemesConfig } from '../types'
 
-export type { FontDef, TamaguiConfigOptions, Palette12, ThemeSeed, ThemeDesc, ThemesConfig }
+export type { FontDef, HanzoguiConfigOptions, Palette12, ThemeSeed, ThemeDesc, ThemesConfig }
 
 // ────────────────────────────────────────────────────────────
 // Type augmentation — activates when this module is imported.
 // Tells TypeScript about the shorthand props (w, h, bg, etc.)
-// we register in createTamaguiConfig below, so <XStack>, <Text>, etc.
+// we register in createHanzoguiConfig below, so <XStack>, <Text>, etc.
 // accept them without a cast.
 // ────────────────────────────────────────────────────────────
 
 declare module '@hanzogui/web' {
-  interface GuiCustomConfig {
+  interface HanzoguiCustomConfig {
     shorthands: {
       // Dimensions
       w: 'width'
@@ -101,6 +102,7 @@ declare module '@hanzogui/web' {
       // Cursor
       cur: 'cursor'
     }
+    animations: typeof animations
   }
 }
 
@@ -140,9 +142,15 @@ const settings = {
   styleCompat: 'react-native' as const,
 }
 
+// ── animations ───────────────────────────────────────────────
+
+const animations = createAnimations({
+  quick: { type: 'timing', duration: 150 },
+})
+
 // ── factory ──────────────────────────────────────────────────
 
-export function createTamaguiConfig(options: TamaguiConfigOptions = {}) {
+export function createHanzoguiConfig(options: HanzoguiConfigOptions = {}) {
   const {
     themes: themesConfig,
     fonts: fontsConfig,
@@ -165,10 +173,10 @@ export function createTamaguiConfig(options: TamaguiConfigOptions = {}) {
     }),
   )
 
-  // ── Tamagui theme generation ──────────────────────────────────
+  // ── Hanzogui theme generation ─────────────────────────────────
   //
   // Each accent theme's $color1…$color12 maps to its accent palette
-  // via Tamagui's default template. In addition, getTheme injects
+  // via Hanzogui's default template. In addition, getTheme injects
   // $grey1…$grey12 from the neutral palette into EVERY theme, so
   // components always have access to neutral surface/border/text tokens.
   //
@@ -188,7 +196,7 @@ export function createTamaguiConfig(options: TamaguiConfigOptions = {}) {
       // Contrast text for solid action surfaces ($color9 = step 9 = seed).
       // White text on dark fills, dark text on light fills.
       // Stored as `solidText` — a custom theme key consumed via useTheme()
-      // since Tamagui's CSS variable injection only covers template-standard keys.
+      // since Hanzogui's CSS variable injection only covers template-standard keys.
       const whiteish = isDark ? neutral[11] : neutral[0]
       const blackish = isDark ? neutral[0] : neutral[11]
       let solidText = isDark ? whiteish : blackish
@@ -221,7 +229,7 @@ export function createTamaguiConfig(options: TamaguiConfigOptions = {}) {
   })
 
   // Tokens
-  const _defaultConfig = getDefaultGuiConfig('web')
+  const _defaultConfig = getDefaultHanzoguiConfig('web')
   const tokens = {
     color: _defaultConfig.tokens.color,
     size: sizeOverride ?? DEFAULT_SIZE,
@@ -236,7 +244,8 @@ export function createTamaguiConfig(options: TamaguiConfigOptions = {}) {
   const heading = fonts.heading ?? DEFAULT_HEADING_FONT
   const mono = fonts.mono ?? DEFAULT_MONO_FONT
 
-  return createGui({
+  return createHanzogui({
+    animations,
     themes,
     tokens,
     fonts: {

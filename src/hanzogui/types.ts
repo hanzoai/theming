@@ -8,7 +8,7 @@ export interface FontDef {
   letterSpacing: Record<string | number, number>
 }
 
-export interface TamaguiConfigOptions {
+export interface HanzoguiConfigOptions {
   themes?: ThemesConfig | null
   fonts?: {
     body?: FontDef | null
