@@ -15,21 +15,23 @@ if [ -n "$(git status --porcelain)" ]; then
   exit 1
 fi
 
-# Build first
-echo "Building..."
-pnpm build
-
-# Bump version
+# Bump version first — prepare-dist.mjs will copy the bumped package.json into dist/
 npm version "$VERSION" --no-git-tag-version
 
 NEW_VERSION=$(node -p "require('./package.json').version")
 echo "Publishing @hanzo/theming@$NEW_VERSION"
 
-# Commit, tag, publish
+# Build — produces dist/ with a cleaned package.json (no publishConfig, no scripts, no devDeps)
+echo "Building..."
+pnpm build
+
+# Commit + tag using the root package.json bump
 git add package.json
 git commit -m "v$NEW_VERSION"
 git tag "v$NEW_VERSION"
-npm publish --access public
+
+# Publish from inside dist/ — the tarball's root is dist/, so exports paths (no ./dist/ prefix) resolve correctly
+(cd dist && npm publish --access public)
 
 echo ""
 echo "Published @hanzo/theming@$NEW_VERSION"
