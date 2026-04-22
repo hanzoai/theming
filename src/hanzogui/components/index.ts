@@ -1,4 +1,4 @@
-// Side-effect: activates GuiCustomConfig shorthand augmentation
+// Side-effect: activates HanzoguiCustomConfig shorthand augmentation
 import '../create-config'
 
 export { default as ThemedButton } from './themed-button'
