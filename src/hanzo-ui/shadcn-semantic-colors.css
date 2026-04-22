@@ -1,7 +1,7 @@
 /*
  * shadcn semantic tokens.
  *
- * Maps shadcn's expected CSS variable names to @hanzo/branding palette steps.
+ * Maps shadcn's expected CSS variable names to @hanzo/theming palette steps.
  * Requires tw-theme-palettes.css (from the org brand package) to be loaded first.
  */
 

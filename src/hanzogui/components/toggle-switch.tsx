@@ -1,4 +1,4 @@
-import { Switch, Theme, type ThemeName } from '@hanzo/gui'
+import { Switch, Theme, type ThemeName } from 'hanzogui'
 
 // A branded toggle switch. When checked, uses the primary theme;
 // when unchecked, uses neutral grey colors.
@@ -24,7 +24,7 @@ const ToggleSwitch: React.FC<{
       size="$3"
       checked={checked}
       onCheckedChange={onCheckedChange}
-      jc="center"
+      justifyContent="center"
       px={2}
       bw={1}
       bg={checked ? '$color9' : '$color7'}
@@ -32,7 +32,7 @@ const ToggleSwitch: React.FC<{
       {...rest}
     >
       <Switch.Thumb
-        animation="quick"
+        transition="quick"
         size="$xs"
         bg={checked ? '$background' : '$color7'}
         borderRadius={1000}
