@@ -50,7 +50,6 @@
     "url": "https://github.com/hanzoai/theming"
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "dist"
+    "access": "public"
   }
 }
