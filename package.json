@@ -25,7 +25,7 @@
   ],
   "scripts": {
     "tc": "tsc --noEmit",
-    "build": "rm -rf dist && tsc && tsup src/hanzo-ui/generate-palettes.ts --format cjs,esm --dts --outDir dist/hanzo-ui && cp src/hanzo-ui/shadcn-semantic-colors.css dist/hanzo-ui/",
+    "build": "rm -rf dist && tsc && tsup src/hanzo-ui/generate-palettes.ts --format cjs,esm --dts --outDir dist/hanzo-ui && cp src/hanzo-ui/shadcn-semantic-colors.css dist/hanzo-ui/ && node scripts/prepare-dist.mjs",
     "pub": "./scripts/publish.sh"
   },
   "peerDependencies": {
