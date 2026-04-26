@@ -29,12 +29,12 @@
     "pub": "./scripts/publish.sh"
   },
   "peerDependencies": {
-    "@hanzogui/animations-react-native": ">=2.0.0-rc.41-hanzoai.5 <2.0.0 || >=2.0.6 <3.0.0",
-    "@hanzogui/config-default": ">=2.0.0-rc.41-hanzoai.5 <2.0.0 || >=2.0.6 <3.0.0",
-    "@hanzogui/shorthands": ">=2.0.0-rc.41-hanzoai.5 <2.0.0 || >=2.0.6 <3.0.0",
-    "@hanzogui/theme-builder": ">=2.0.0-rc.41-hanzoai.5 <2.0.0 || >=2.0.6 <3.0.0",
-    "@hanzogui/web": ">=2.0.0-rc.41-hanzoai.5 <2.0.0 || >=2.0.6 <3.0.0",
-    "hanzogui": ">=2.0.0-rc.41-hanzoai.5 <2.0.0 || >=2.0.6 <3.0.0",
+    "@hanzogui/animations-react-native": ">=102.0.0-rc.41-hanzoai.1 <103.0.0",
+    "@hanzogui/config-default": ">=102.0.0-rc.41-hanzoai.1 <103.0.0",
+    "@hanzogui/shorthands": ">=102.0.0-rc.41-hanzoai.1 <103.0.0",
+    "@hanzogui/theme-builder": ">=102.0.0-rc.41-hanzoai.1 <103.0.0",
+    "@hanzogui/web": ">=102.0.0-rc.41-hanzoai.1 <103.0.0",
+    "hanzogui": ">=102.0.0-rc.41-hanzoai.1 <103.0.0",
     "react": ">=18"
   },
   "devDependencies": {
