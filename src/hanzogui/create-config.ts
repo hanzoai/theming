@@ -97,7 +97,14 @@ declare module '@hanzogui/web' {
       minW: 'minWidth'
       minH: 'minHeight'
       // Text
-      text: 'textAlign'
+      // NOTE: `text: 'textAlign'` was removed because the @hanzogui RC.41
+      // type machinery silently resolves it to `undefined` for components
+      // whose final prop set Omits `textAlign` (notably <Input> / TextInput-
+      // backed components). The shorthand "succeeds" type-wise but yields
+      // an unusable `text?: undefined` prop, surfacing as
+      // `Type 'string' is not assignable to type 'undefined'` at usage.
+      // Use `textAlign="..."` directly until the framework signals the
+      // failed lookup loudly instead of silently.
       select: 'userSelect'
       // Cursor
       cur: 'cursor'
