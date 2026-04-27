@@ -43,36 +43,45 @@
   --sidebar-ring: var(--color-primary-8);
 }
 
+/*
+ * Dark scheme uses the SAME palette step numbers as light. The brand's
+ * brand-palettes.css redefines the palette VALUES inside its own
+ * [data-color-scheme='dark'] block — Radix-style inversion: step 1 is
+ * "least-contrast/app-background" and step 12 is "most-contrast/text"
+ * in BOTH modes, and the actual color flips automatically. So the only
+ * tokens that should differ here are the brand-color tokens we want
+ * deliberately softer on dark (primary, destructive, ring, charts).
+ */
 [data-color-scheme='dark'] {
-  --background: var(--color-neutral-12);
-  --foreground: var(--color-neutral-1);
-  --card: var(--color-neutral-11);
-  --card-foreground: var(--color-neutral-1);
-  --popover: var(--color-neutral-11);
-  --popover-foreground: var(--color-neutral-1);
+  --background: var(--color-neutral-1);
+  --foreground: var(--color-neutral-11);
+  --card: var(--color-neutral-2);
+  --card-foreground: var(--color-neutral-11);
+  --popover: var(--color-neutral-2);
+  --popover-foreground: var(--color-neutral-11);
   --primary: var(--color-primary-3);
   --primary-foreground: var(--color-primary-12);
-  --secondary: var(--color-neutral-10);
-  --secondary-foreground: var(--color-neutral-1);
-  --muted: var(--color-neutral-10);
-  --muted-foreground: var(--color-neutral-5);
-  --accent: var(--color-neutral-10);
-  --accent-foreground: var(--color-neutral-1);
+  --secondary: var(--color-neutral-3);
+  --secondary-foreground: var(--color-neutral-11);
+  --muted: var(--color-neutral-3);
+  --muted-foreground: var(--color-neutral-8);
+  --accent: var(--color-neutral-3);
+  --accent-foreground: var(--color-neutral-11);
   --destructive: var(--color-danger-4);
-  --border: var(--color-neutral-9);
-  --input: var(--color-neutral-8);
+  --border: var(--color-neutral-4);
+  --input: var(--color-neutral-5);
   --ring: var(--color-primary-5);
   --chart-1: var(--color-primary-5);
   --chart-2: var(--color-success-5);
   --chart-3: var(--color-warning-5);
   --chart-4: var(--color-info-5);
   --chart-5: var(--color-danger-5);
-  --sidebar: var(--color-neutral-11);
-  --sidebar-foreground: var(--color-neutral-1);
+  --sidebar: var(--color-neutral-2);
+  --sidebar-foreground: var(--color-neutral-11);
   --sidebar-primary: var(--color-primary-3);
   --sidebar-primary-foreground: var(--color-primary-12);
-  --sidebar-accent: var(--color-neutral-10);
-  --sidebar-accent-foreground: var(--color-neutral-1);
-  --sidebar-border: var(--color-neutral-9);
+  --sidebar-accent: var(--color-neutral-3);
+  --sidebar-accent-foreground: var(--color-neutral-11);
+  --sidebar-border: var(--color-neutral-4);
   --sidebar-ring: var(--color-primary-5);
 }
