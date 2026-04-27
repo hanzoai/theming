@@ -2,86 +2,124 @@
  * shadcn semantic tokens.
  *
  * Maps shadcn's expected CSS variable names to @hanzo/theming palette steps.
- * Requires tw-theme-palettes.css (from the org brand package) to be loaded first.
+ * Requires brand-palettes.css (from the org brand package) to be loaded first
+ * so `--palette-{theme}-{1..12}` are defined.
+ *
+ * Three layers:
+ *   1. `:root` / `[data-color-scheme='dark']` — semantic tokens point at the
+ *      runtime palette steps (`var(--palette-X-N)`). Dark also re-routes the
+ *      brand-color tokens (e.g., --primary → primary-3 in dark, primary-10
+ *      in light) for softer accents.
+ *   2. `@theme {}` — registers `--radius` for utility generation.
+ *   3. `@theme inline {}` — bridges the runtime semantic tokens into
+ *      Tailwind v4's color registry as `--color-background`, etc., so
+ *      `bg-background`, `text-foreground`, `bg-card`, `border-border`,
+ *      etc. utilities actually get generated. `inline` preserves the
+ *      `var(...)` reference so the value flips at runtime.
  */
 
 @theme {
   --radius: 0.625rem;
 }
 
-:root {
-  --background: var(--color-neutral-1);
-  --foreground: var(--color-neutral-11);
-  --card: var(--color-neutral-2);
-  --card-foreground: var(--color-neutral-11);
-  --popover: var(--color-neutral-1);
-  --popover-foreground: var(--color-neutral-11);
-  --primary: var(--color-primary-10);
-  --primary-foreground: var(--color-primary-1);
-  --secondary: var(--color-neutral-3);
-  --secondary-foreground: var(--color-neutral-11);
-  --muted: var(--color-neutral-3);
-  --muted-foreground: var(--color-neutral-8);
-  --accent: var(--color-neutral-3);
-  --accent-foreground: var(--color-neutral-11);
-  --destructive: var(--color-danger-9);
-  --border: var(--color-neutral-4);
-  --input: var(--color-neutral-5);
-  --ring: var(--color-primary-8);
-  --chart-1: var(--color-primary-8);
-  --chart-2: var(--color-success-8);
-  --chart-3: var(--color-warning-8);
-  --chart-4: var(--color-info-8);
-  --chart-5: var(--color-danger-8);
-  --sidebar: var(--color-neutral-2);
-  --sidebar-foreground: var(--color-neutral-11);
-  --sidebar-primary: var(--color-primary-10);
-  --sidebar-primary-foreground: var(--color-primary-1);
-  --sidebar-accent: var(--color-neutral-3);
-  --sidebar-accent-foreground: var(--color-neutral-11);
-  --sidebar-border: var(--color-neutral-4);
-  --sidebar-ring: var(--color-primary-8);
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/*
- * Dark scheme uses the SAME palette step numbers as light. The brand's
- * brand-palettes.css redefines the palette VALUES inside its own
- * [data-color-scheme='dark'] block — Radix-style inversion: step 1 is
- * "least-contrast/app-background" and step 12 is "most-contrast/text"
- * in BOTH modes, and the actual color flips automatically. So the only
- * tokens that should differ here are the brand-color tokens we want
- * deliberately softer on dark (primary, destructive, ring, charts).
- */
+:root {
+  --background: var(--palette-neutral-1);
+  --foreground: var(--palette-neutral-11);
+  --card: var(--palette-neutral-2);
+  --card-foreground: var(--palette-neutral-11);
+  --popover: var(--palette-neutral-1);
+  --popover-foreground: var(--palette-neutral-11);
+  --primary: var(--palette-primary-10);
+  --primary-foreground: var(--palette-primary-1);
+  --secondary: var(--palette-neutral-3);
+  --secondary-foreground: var(--palette-neutral-11);
+  --muted: var(--palette-neutral-3);
+  --muted-foreground: var(--palette-neutral-8);
+  --accent: var(--palette-neutral-3);
+  --accent-foreground: var(--palette-neutral-11);
+  --destructive: var(--palette-danger-9);
+  --border: var(--palette-neutral-4);
+  --input: var(--palette-neutral-5);
+  --ring: var(--palette-primary-8);
+  --chart-1: var(--palette-primary-8);
+  --chart-2: var(--palette-success-8);
+  --chart-3: var(--palette-warning-8);
+  --chart-4: var(--palette-info-8);
+  --chart-5: var(--palette-danger-8);
+  --sidebar: var(--palette-neutral-2);
+  --sidebar-foreground: var(--palette-neutral-11);
+  --sidebar-primary: var(--palette-primary-10);
+  --sidebar-primary-foreground: var(--palette-primary-1);
+  --sidebar-accent: var(--palette-neutral-3);
+  --sidebar-accent-foreground: var(--palette-neutral-11);
+  --sidebar-border: var(--palette-neutral-4);
+  --sidebar-ring: var(--palette-primary-8);
+}
+
 [data-color-scheme='dark'] {
-  --background: var(--color-neutral-1);
-  --foreground: var(--color-neutral-11);
-  --card: var(--color-neutral-2);
-  --card-foreground: var(--color-neutral-11);
-  --popover: var(--color-neutral-2);
-  --popover-foreground: var(--color-neutral-11);
-  --primary: var(--color-primary-3);
-  --primary-foreground: var(--color-primary-12);
-  --secondary: var(--color-neutral-3);
-  --secondary-foreground: var(--color-neutral-11);
-  --muted: var(--color-neutral-3);
-  --muted-foreground: var(--color-neutral-8);
-  --accent: var(--color-neutral-3);
-  --accent-foreground: var(--color-neutral-11);
-  --destructive: var(--color-danger-4);
-  --border: var(--color-neutral-4);
-  --input: var(--color-neutral-5);
-  --ring: var(--color-primary-5);
-  --chart-1: var(--color-primary-5);
-  --chart-2: var(--color-success-5);
-  --chart-3: var(--color-warning-5);
-  --chart-4: var(--color-info-5);
-  --chart-5: var(--color-danger-5);
-  --sidebar: var(--color-neutral-2);
-  --sidebar-foreground: var(--color-neutral-11);
-  --sidebar-primary: var(--color-primary-3);
-  --sidebar-primary-foreground: var(--color-primary-12);
-  --sidebar-accent: var(--color-neutral-3);
-  --sidebar-accent-foreground: var(--color-neutral-11);
-  --sidebar-border: var(--color-neutral-4);
-  --sidebar-ring: var(--color-primary-5);
+  --background: var(--palette-neutral-1);
+  --foreground: var(--palette-neutral-11);
+  --card: var(--palette-neutral-2);
+  --card-foreground: var(--palette-neutral-11);
+  --popover: var(--palette-neutral-2);
+  --popover-foreground: var(--palette-neutral-11);
+  --primary: var(--palette-primary-3);
+  --primary-foreground: var(--palette-primary-12);
+  --secondary: var(--palette-neutral-3);
+  --secondary-foreground: var(--palette-neutral-11);
+  --muted: var(--palette-neutral-3);
+  --muted-foreground: var(--palette-neutral-8);
+  --accent: var(--palette-neutral-3);
+  --accent-foreground: var(--palette-neutral-11);
+  --destructive: var(--palette-danger-4);
+  --border: var(--palette-neutral-4);
+  --input: var(--palette-neutral-5);
+  --ring: var(--palette-primary-5);
+  --chart-1: var(--palette-primary-5);
+  --chart-2: var(--palette-success-5);
+  --chart-3: var(--palette-warning-5);
+  --chart-4: var(--palette-info-5);
+  --chart-5: var(--palette-danger-5);
+  --sidebar: var(--palette-neutral-2);
+  --sidebar-foreground: var(--palette-neutral-11);
+  --sidebar-primary: var(--palette-primary-3);
+  --sidebar-primary-foreground: var(--palette-primary-12);
+  --sidebar-accent: var(--palette-neutral-3);
+  --sidebar-accent-foreground: var(--palette-neutral-11);
+  --sidebar-border: var(--palette-neutral-4);
+  --sidebar-ring: var(--palette-primary-5);
 }
