@@ -12,19 +12,29 @@ import { DEFAULT_SEEDS } from '../hanzogui/defaults/themes'
 /**
  * Generate tw-theme-palettes.css content.
  *
- * Produces `--color-{theme}-{1..12}` custom properties for each theme
- * in both light (:root) and dark ([data-color-scheme='dark']) contexts.
+ * Two layers per theme:
+ *   1. Runtime CSS variables `--palette-{theme}-{1..12}` defined in
+ *      `:root` (light) and `[data-color-scheme='dark']` (dark). The
+ *      browser flips these at runtime based on the active scheme.
+ *   2. A Tailwind v4 `@theme inline` block that bridges the runtime
+ *      variables into Tailwind's color registry as `--color-{theme}-{N}`,
+ *      so utilities like `bg-primary-9`, `text-success-9`, etc. get
+ *      generated. The `inline` keyword preserves the `var(...)`
+ *      reference at build time so the value actually flips at runtime.
  *
  * Example output:
  *   :root {
- *     --color-neutral-1: #fafafa;
- *     --color-neutral-2: #f5f5f5;
- *     ...
- *     --color-primary-1: #f9fafb;
+ *     --palette-neutral-1: #fafafa;
+ *     --palette-neutral-2: #f5f5f5;
  *     ...
  *   }
  *   [data-color-scheme='dark'] {
- *     --color-neutral-1: #0d0d0d;
+ *     --palette-neutral-1: #0d0d0d;
+ *     ...
+ *   }
+ *   @theme inline {
+ *     --color-neutral-1: var(--palette-neutral-1);
+ *     --color-neutral-2: var(--palette-neutral-2);
  *     ...
  *   }
  */
@@ -34,12 +44,14 @@ export function generateTwThemePalettesCss(config: ThemesConfig = {}): string {
 
   const lightVars: string[] = []
   const darkVars: string[] = []
+  const themeInlineVars: string[] = []
 
   for (const [name, desc] of themes) {
     const { light, dark } = resolveThemeDesc(desc)
     for (let i = 0; i < 12; i++) {
-      lightVars.push(`  --color-${name}-${i + 1}: ${light[i]};`)
-      darkVars.push(`  --color-${name}-${i + 1}: ${dark[i]};`)
+      lightVars.push(`  --palette-${name}-${i + 1}: ${light[i]};`)
+      darkVars.push(`  --palette-${name}-${i + 1}: ${dark[i]};`)
+      themeInlineVars.push(`  --color-${name}-${i + 1}: var(--palette-${name}-${i + 1});`)
     }
   }
 
@@ -52,6 +64,10 @@ export function generateTwThemePalettesCss(config: ThemesConfig = {}): string {
     '',
     "[data-color-scheme='dark'] {",
     ...darkVars,
+    '}',
+    '',
+    '@theme inline {',
+    ...themeInlineVars,
     '}',
     '',
   ].join('\n')
@@ -69,71 +85,71 @@ export function generateTwThemePalettesCss(config: ThemesConfig = {}): string {
  *   Step 10–12: foreground text
  */
 const SHADCN_LIGHT_MAP: Record<string, string> = {
-  '--background':             'var(--color-neutral-1)',
-  '--foreground':             'var(--color-neutral-11)',
-  '--card':                   'var(--color-neutral-2)',
-  '--card-foreground':        'var(--color-neutral-11)',
-  '--popover':                'var(--color-neutral-1)',
-  '--popover-foreground':     'var(--color-neutral-11)',
-  '--primary':                'var(--color-primary-10)',
-  '--primary-foreground':     'var(--color-primary-1)',
-  '--secondary':              'var(--color-neutral-3)',
-  '--secondary-foreground':   'var(--color-neutral-11)',
-  '--muted':                  'var(--color-neutral-3)',
-  '--muted-foreground':       'var(--color-neutral-8)',
-  '--accent':                 'var(--color-neutral-3)',
-  '--accent-foreground':      'var(--color-neutral-11)',
-  '--destructive':            'var(--color-danger-9)',
-  '--border':                 'var(--color-neutral-4)',
-  '--input':                  'var(--color-neutral-5)',
-  '--ring':                   'var(--color-primary-8)',
-  '--chart-1':                'var(--color-primary-8)',
-  '--chart-2':                'var(--color-success-8)',
-  '--chart-3':                'var(--color-warning-8)',
-  '--chart-4':                'var(--color-info-8)',
-  '--chart-5':                'var(--color-danger-8)',
-  '--sidebar':                'var(--color-neutral-2)',
-  '--sidebar-foreground':     'var(--color-neutral-11)',
-  '--sidebar-primary':        'var(--color-primary-10)',
-  '--sidebar-primary-foreground': 'var(--color-primary-1)',
-  '--sidebar-accent':         'var(--color-neutral-3)',
-  '--sidebar-accent-foreground': 'var(--color-neutral-11)',
-  '--sidebar-border':         'var(--color-neutral-4)',
-  '--sidebar-ring':           'var(--color-primary-8)',
+  '--background':             'var(--palette-neutral-1)',
+  '--foreground':             'var(--palette-neutral-11)',
+  '--card':                   'var(--palette-neutral-2)',
+  '--card-foreground':        'var(--palette-neutral-11)',
+  '--popover':                'var(--palette-neutral-1)',
+  '--popover-foreground':     'var(--palette-neutral-11)',
+  '--primary':                'var(--palette-primary-10)',
+  '--primary-foreground':     'var(--palette-primary-1)',
+  '--secondary':              'var(--palette-neutral-3)',
+  '--secondary-foreground':   'var(--palette-neutral-11)',
+  '--muted':                  'var(--palette-neutral-3)',
+  '--muted-foreground':       'var(--palette-neutral-8)',
+  '--accent':                 'var(--palette-neutral-3)',
+  '--accent-foreground':      'var(--palette-neutral-11)',
+  '--destructive':            'var(--palette-danger-9)',
+  '--border':                 'var(--palette-neutral-4)',
+  '--input':                  'var(--palette-neutral-5)',
+  '--ring':                   'var(--palette-primary-8)',
+  '--chart-1':                'var(--palette-primary-8)',
+  '--chart-2':                'var(--palette-success-8)',
+  '--chart-3':                'var(--palette-warning-8)',
+  '--chart-4':                'var(--palette-info-8)',
+  '--chart-5':                'var(--palette-danger-8)',
+  '--sidebar':                'var(--palette-neutral-2)',
+  '--sidebar-foreground':     'var(--palette-neutral-11)',
+  '--sidebar-primary':        'var(--palette-primary-10)',
+  '--sidebar-primary-foreground': 'var(--palette-primary-1)',
+  '--sidebar-accent':         'var(--palette-neutral-3)',
+  '--sidebar-accent-foreground': 'var(--palette-neutral-11)',
+  '--sidebar-border':         'var(--palette-neutral-4)',
+  '--sidebar-ring':           'var(--palette-primary-8)',
 }
 
 const SHADCN_DARK_MAP: Record<string, string> = {
-  '--background':             'var(--color-neutral-1)',
-  '--foreground':             'var(--color-neutral-11)',
-  '--card':                   'var(--color-neutral-2)',
-  '--card-foreground':        'var(--color-neutral-11)',
-  '--popover':                'var(--color-neutral-2)',
-  '--popover-foreground':     'var(--color-neutral-11)',
-  '--primary':                'var(--color-primary-3)',
-  '--primary-foreground':     'var(--color-primary-12)',
-  '--secondary':              'var(--color-neutral-3)',
-  '--secondary-foreground':   'var(--color-neutral-11)',
-  '--muted':                  'var(--color-neutral-3)',
-  '--muted-foreground':       'var(--color-neutral-8)',
-  '--accent':                 'var(--color-neutral-3)',
-  '--accent-foreground':      'var(--color-neutral-11)',
-  '--destructive':            'var(--color-danger-4)',
-  '--border':                 'var(--color-neutral-4)',
-  '--input':                  'var(--color-neutral-5)',
-  '--ring':                   'var(--color-primary-5)',
-  '--chart-1':                'var(--color-primary-5)',
-  '--chart-2':                'var(--color-success-5)',
-  '--chart-3':                'var(--color-warning-5)',
-  '--chart-4':                'var(--color-info-5)',
-  '--chart-5':                'var(--color-danger-5)',
-  '--sidebar':                'var(--color-neutral-2)',
-  '--sidebar-foreground':     'var(--color-neutral-11)',
-  '--sidebar-primary':        'var(--color-primary-3)',
-  '--sidebar-primary-foreground': 'var(--color-primary-12)',
-  '--sidebar-accent':         'var(--color-neutral-3)',
-  '--sidebar-accent-foreground': 'var(--color-neutral-11)',
-  '--sidebar-border':         'var(--color-neutral-4)',
-  '--sidebar-ring':           'var(--color-primary-5)',
+  '--background':             'var(--palette-neutral-1)',
+  '--foreground':             'var(--palette-neutral-11)',
+  '--card':                   'var(--palette-neutral-2)',
+  '--card-foreground':        'var(--palette-neutral-11)',
+  '--popover':                'var(--palette-neutral-2)',
+  '--popover-foreground':     'var(--palette-neutral-11)',
+  '--primary':                'var(--palette-primary-3)',
+  '--primary-foreground':     'var(--palette-primary-12)',
+  '--secondary':              'var(--palette-neutral-3)',
+  '--secondary-foreground':   'var(--palette-neutral-11)',
+  '--muted':                  'var(--palette-neutral-3)',
+  '--muted-foreground':       'var(--palette-neutral-8)',
+  '--accent':                 'var(--palette-neutral-3)',
+  '--accent-foreground':      'var(--palette-neutral-11)',
+  '--destructive':            'var(--palette-danger-4)',
+  '--border':                 'var(--palette-neutral-4)',
+  '--input':                  'var(--palette-neutral-5)',
+  '--ring':                   'var(--palette-primary-5)',
+  '--chart-1':                'var(--palette-primary-5)',
+  '--chart-2':                'var(--palette-success-5)',
+  '--chart-3':                'var(--palette-warning-5)',
+  '--chart-4':                'var(--palette-info-5)',
+  '--chart-5':                'var(--palette-danger-5)',
+  '--sidebar':                'var(--palette-neutral-2)',
+  '--sidebar-foreground':     'var(--palette-neutral-11)',
+  '--sidebar-primary':        'var(--palette-primary-3)',
+  '--sidebar-primary-foreground': 'var(--palette-primary-12)',
+  '--sidebar-accent':         'var(--palette-neutral-3)',
+  '--sidebar-accent-foreground': 'var(--palette-neutral-11)',
+  '--sidebar-border':         'var(--palette-neutral-4)',
+  '--sidebar-ring':           'var(--palette-primary-5)',
 }
 
 function renderVars(map: Record<string, string>): string[] {
@@ -143,13 +159,38 @@ function renderVars(map: Record<string, string>): string[] {
 /**
  * Generate tw-shadcn-semantic-colors.css content.
  *
- * Maps shadcn's expected CSS variable names to our palette step references.
- * The palette variables must be defined (via tw-theme-palettes.css) for these
- * to resolve.
+ * Three layers:
+ *   1. `:root` and `[data-color-scheme='dark']` define semantic tokens
+ *      (`--background`, `--foreground`, etc.) that point at runtime
+ *      palette steps (`var(--palette-X-N)`). The palette variables
+ *      themselves are defined in tw-theme-palettes.css and flip per
+ *      scheme; the indirection here lets dark mode also re-route the
+ *      brand-color tokens (e.g., --primary → primary-3 in dark, vs
+ *      primary-10 in light) for softer accents on dark.
+ *   2. `@theme {}` registers `--radius` for utility generation.
+ *   3. `@theme inline {}` bridges the runtime semantic tokens into
+ *      Tailwind v4's color registry as `--color-background`,
+ *      `--color-foreground`, etc., so utilities like `bg-background`,
+ *      `text-foreground`, `bg-card`, `border-border` actually get
+ *      generated. The `inline` keyword preserves the `var(...)`
+ *      reference at build time so the value flips at runtime.
  */
 export function generateTwShadcnSemanticColorsCss(): string {
+  const semanticInlineVars = Object.keys(SHADCN_LIGHT_MAP).map((k) => {
+    const name = k.slice(2) // strip leading "--"
+    return `  --color-${name}: var(${k});`
+  })
+
   return [
     '/* Generated by @hanzo/theming — do not edit manually */',
+    '',
+    '@theme {',
+    '  --radius: 0.625rem;',
+    '}',
+    '',
+    '@theme inline {',
+    ...semanticInlineVars,
+    '}',
     '',
     ':root {',
     ...renderVars(SHADCN_LIGHT_MAP),
