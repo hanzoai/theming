@@ -1,6 +1,6 @@
 {
   "name": "@hanzo/theming",
-  "version": "7.3.0",
+  "version": "7.3.1",
   "description": "Theme engine, palette generation, and themed components for Hanzo-powered apps",
   "exports": {
     "./hanzogui-config": {
