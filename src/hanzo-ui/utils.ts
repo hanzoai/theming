@@ -47,7 +47,8 @@ export function generateTwThemePalettesCss(config: ThemesConfig = {}): string {
   const themeInlineVars: string[] = []
 
   for (const [name, desc] of themes) {
-    const { light, dark } = resolveThemeDesc(desc)
+    const kind = name === 'neutral' ? 'neutral' : 'accent'
+    const { light, dark } = resolveThemeDesc(desc, kind)
     for (let i = 0; i < 12; i++) {
       lightVars.push(`  --palette-${name}-${i + 1}: ${light[i]};`)
       darkVars.push(`  --palette-${name}-${i + 1}: ${dark[i]};`)
