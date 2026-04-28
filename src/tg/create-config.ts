@@ -1,5 +1,5 @@
 /**
- * Factory: TamaguiConfigOptions → full Tamagui config.
+ * Factory: GuiConfigOptions → full @hanzo/gui config.
  *
  * All options are optional — omitted values get sensible defaults.
  */
@@ -19,15 +19,15 @@ import {
   DEFAULT_HEADING_FONT,
   DEFAULT_MONO_FONT,
 } from './defaults/fonts'
-import type { FontDef, TamaguiConfigOptions } from './types'
+import type { FontDef, GuiConfigOptions } from './types'
 import type { Palette12, ThemeSeed, ThemeDesc, ThemesConfig } from '../types'
 
-export type { FontDef, TamaguiConfigOptions, Palette12, ThemeSeed, ThemeDesc, ThemesConfig }
+export type { FontDef, GuiConfigOptions, Palette12, ThemeSeed, ThemeDesc, ThemesConfig }
 
 // ────────────────────────────────────────────────────────────
 // Type augmentation — activates when this module is imported.
 // Tells TypeScript about the shorthand props (w, h, bg, etc.)
-// we register in createTamaguiConfig below, so <XStack>, <Text>, etc.
+// we register in createGuiConfig below, so <XStack>, <Text>, etc.
 // accept them without a cast.
 // ────────────────────────────────────────────────────────────
 
@@ -142,7 +142,7 @@ const settings = {
 
 // ── factory ──────────────────────────────────────────────────
 
-export function createTamaguiConfig(options: TamaguiConfigOptions = {}) {
+export function createGuiConfig(options: GuiConfigOptions = {}) {
   const {
     themes: themesConfig,
     fonts: fontsConfig,

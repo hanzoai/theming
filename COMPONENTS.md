@@ -1,6 +1,6 @@
 # Components
 
-Themed components built on Tamagui and aware of our theming mechanism, so they work with any palette — not just `primary`.
+Themed components built on @hanzo/gui and aware of our theming mechanism, so they work with any palette — not just `primary`.
 
 ```typescript
 import { ThemedButton, StatusBox, ToggleSwitch } from '@hanzo/branding/tg-components'
