@@ -1,10 +1,10 @@
 # @hanzo/branding
 
-A theming and component toolkit for building white-label apps on @hanzo/gui (Tamagui). Provides generation of Tailwind tokens expected by shadcn for compatibility with previous systems. Provide seed colors, get a complete design system.
+A theming and component toolkit for building white-label apps on @hanzo/gui. Provides generation of Tailwind tokens expected by shadcn for compatibility with previous systems. Provide seed colors, get a complete design system.
 
 ## How it works
 
-Every color in the system — backgrounds, text, borders, button states — is derived from a 12-step palette, which can be configured with a simple one-color "seed." This generates both light and dark versions of the palette. Tamagui calls these palettes "themes," and our system uses 7 of them: neutral, primary, secondary, info, success, warning, and danger — any or all of which can just be the default. These themes are used by all @hanzo/gui (Tamagui) components. They are also translated into a Tailwind CSS theme that can be used with systems based on shadcn.
+Every color in the system — backgrounds, text, borders, button states — is derived from a 12-step palette, which can be configured with a simple one-color "seed." This generates both light and dark versions of the palette. The system calls these palettes "themes," and our system uses 7 of them: neutral, primary, secondary, info, success, warning, and danger — any or all of which can just be the default. These themes are used by all @hanzo/gui components. They are also translated into a Tailwind CSS theme that can be used with systems based on shadcn.
 
 Org-specific brand packages (`@my-org/brand`) just provide seeds (or 12-step palettes) and assets; all the generation logic lives here.
 
@@ -16,16 +16,16 @@ pnpm add @hanzo/branding
 
 ## Quick start
 
-### Tamagui config and org's brand module
+### @hanzo/gui config and org's brand module
 
-**In the org's brand module** — assemble and export a Tamagui config from your seeds:
+**In the org's brand module** — assemble and export a @hanzo/gui config from your seeds:
 
 ```typescript
-// @my-org/brand/src/tamagui-config.ts
-import { createTamaguiConfig } from '@hanzo/branding/tg-config'
+// @my-org/brand/src/gui-config.ts
+import { createGuiConfig } from '@hanzo/branding/tg-config'
 import brandJson from './brand.json'
 
-export const tamaguiConfig = createTamaguiConfig({
+export const guiConfig = createGuiConfig({
   themes: brandJson.themes,
   // omitted fields (fonts, size, space) fall back to defaults
 })
@@ -35,17 +35,17 @@ export const tamaguiConfig = createTamaguiConfig({
 
 ```tsx
 // @my-org/<app>/src/main.tsx
-import { tamaguiConfig } from '@my-org/brand'
+import { guiConfig } from '@my-org/brand'
 import { GuiProvider } from '@hanzo/gui'
 
-<GuiProvider config={tamaguiConfig}>
+<GuiProvider config={guiConfig}>
   <App />
 </GuiProvider>
 ```
 
 ### Tailwind / shadcn
 
-For use with shadcn-based code, token mappings from Tamagui 'themes' (palettes) are provided by `@hanzo/branding`. Only the palettes are org-specific, and they are generated at build time by the `generate-palettes` CLI (see [For org brand packages](#for-org-brand-packages)).
+For use with shadcn-based code, token mappings from @hanzo/gui 'themes' (palettes) are provided by `@hanzo/branding`. Only the palettes are org-specific, and they are generated at build time by the `generate-palettes` CLI (see [For org brand packages](#for-org-brand-packages)).
 
 For convenience, an org's brand package should likely export a single CSS file that assembles the pieces in the right order. 
 
@@ -105,14 +105,14 @@ Each theme can be specified as:
 { light: { seed: '#1a2744' }, dark: ['#0c1322', '#131d34', ..., '#f0f3f8'] }
 ```
 
-## Tamagui config
+## @hanzo/gui config
 
-`createTamaguiConfig()` produces a complete Tamagui config from your supplied values:
+`createGuiConfig()` produces a complete @hanzo/gui config from your supplied values:
 
 ```typescript
-import { createTamaguiConfig } from '@hanzo/branding/tg-config'
+import { createGuiConfig } from '@hanzo/branding/tg-config'
 
-const config = createTamaguiConfig({
+const config = createGuiConfig({
   themes: {
     primary: { seed: '#1a2744' },
     // neutral, secondary, info, success, warning, danger — pick up defaults
@@ -135,7 +135,7 @@ const config = createTamaguiConfig({
 | `size` | `Record<string, number>` | Non-linear component size scale (20–144px) |
 | `space` | `Record<string, number>` | Linear 4px grid (0–96px) |
 
-Each theme seed becomes a Tamagui children theme. Components use standard theme wrapping:
+Each theme seed becomes a @hanzo/gui children theme. Components use standard theme wrapping:
 
 ```tsx
 <Theme name="primary">
@@ -194,7 +194,7 @@ Output: `brand-palettes.css`
 
 ## Components
 
-Themed Tamagui components: ThemedButton, GhostButton, OutlineButton, StatusBox, ToggleSwitch, StyledCard.
+Themed @hanzo/gui components: ThemedButton, GhostButton, OutlineButton, StatusBox, ToggleSwitch, StyledCard.
 
 See [COMPONENTS.md](COMPONENTS.md) for usage and examples.
 
@@ -204,9 +204,9 @@ See [COMPONENTS.md](COMPONENTS.md) for usage and examples.
 src/
 ├── types.ts                              # Palette12, ThemeSeed, ThemeDesc, ThemesConfig
 ├── palette-utils.ts                      # generatePalette, generatePalettes, resolveThemeDesc
-├── tg/                                   # Tamagui-specific
-│   ├── types.ts                          # FontDef, TamaguiConfigOptions
-│   ├── create-config.ts                  # createTamaguiConfig(options?)
+├── tg/                                   # @hanzo/gui-specific
+│   ├── types.ts                          # FontDef, GuiConfigOptions
+│   ├── create-config.ts                  # createGuiConfig(options?)
 │   ├── index.ts                          # (internal barrel)
 │   ├── defaults/
 │   │   ├── themes.ts                     # default seed colors
@@ -225,8 +225,8 @@ src/
 
 | Path | What |
 |------|------|
-| `@hanzo/branding/tg-config` | `createTamaguiConfig` and types |
-| `@hanzo/branding/tg-components` | Tamagui components |
+| `@hanzo/branding/tg-config` | `createGuiConfig` and types |
+| `@hanzo/branding/tg-components` | @hanzo/gui components |
 | `@hanzo/branding/tg-config-defaults` | Defaults (seeds, size, space, fonts) |
 | `@hanzo/branding/shadcn-semantic-tw-colors.css` | Static CSS — maps 12-step palettes to semantic color values expected by shadcn |
 
@@ -237,25 +237,25 @@ An org brand package depends on `@hanzo/branding` and provides just data:
 ```
 @my-org/brand/
 ├── src/
-│   ├── brand.json                # org identity, URLs, and Tamagui palettes in 'themes' field
+│   ├── brand.json                # org identity, URLs, and @hanzo/gui palettes in 'themes' field
 │   ├── brand-palettes.css        # generated by prebuild (gitignored)
 │   ├── my-org-tw-additions.css   # (optional) org-specific tw tokens
 │   ├── tw-my-org.css             # bundle: tailwind + additions + palettes + semantic
 │   ├── fonts.ts                  # (optional) org-specific font defs 
-│   ├── tamagui-config.ts         # calls createTamaguiConfig
+│   ├── gui-config.ts         # calls createGuiConfig
 │   ├── types.ts                  # BrandIdentity, OrgConfig (define the rest of brand.json)
 │   └── index.ts                  # re-exports
 └── assets/                       # logos, etc
 ```
 
-The `tamagui-config.ts` calls `createTamaguiConfig` with the org's seeds and fonts:
+The `gui-config.ts` calls `createGuiConfig` with the org's seeds and fonts:
 
 ```typescript
-import { createTamaguiConfig } from '@hanzo/branding/tg-config'
+import { createGuiConfig } from '@hanzo/branding/tg-config'
 import brandJson from './brand.json'
 import { bodyFont, headingFont, monoFont } from './fonts'
 
-export const tamaguiConfig = createTamaguiConfig({
+export const guiConfig = createGuiConfig({
   themes: brandJson.themes,
   fonts: { body: bodyFont, heading: headingFont, mono: monoFont },
 })
