@@ -29,7 +29,7 @@ const ToggleSwitch: React.FC<{
       pt={0.5}
       bw={1}
       bg={checked ? '' : '$color7'}
-      activeStyle={{ bg: '$color9' }} // Switch has its own activeStyle that runs when checked — overrides whatever bg you set
+      activeStyle={{ backgroundColor: '$color9' }} // Switch has its own activeStyle that runs when checked — overrides whatever bg you set
       bc={checked ? '$color9' : '$color7'} 
       {...rest}
     >
