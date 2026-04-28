@@ -26,15 +26,17 @@ const ToggleSwitch: React.FC<{
       onCheckedChange={onCheckedChange}
       justifyContent="center"
       px={2}
+      pt={0.5}
       bw={1}
-      bg={checked ? '$color9' : '$color7'}
-      bc={checked ? '$color8' : '$color8'}
+      bg={checked ? '' : '$color7'}
+      activeStyle={{ bg: '$color9' }} // Switch has its own activeStyle that runs when checked — overrides whatever bg you set
+      bc={checked ? '$color9' : '$color7'} 
       {...rest}
     >
       <Switch.Thumb
         transition="quick"
         size="$xs"
-        bg={checked ? '$background' : '$color7'}
+        bg='$color1'
         borderRadius={1000}
         my="auto"
       />
