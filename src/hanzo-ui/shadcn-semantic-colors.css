@@ -7,9 +7,9 @@
  *
  * Three layers:
  *   1. `:root` / `[data-color-scheme='dark']` — semantic tokens point at the
- *      runtime palette steps (`var(--palette-X-N)`). Dark also re-routes the
- *      brand-color tokens (e.g., --primary → primary-3 in dark, primary-10
- *      in light) for softer accents.
+ *      runtime palette steps (`var(--palette-X-N)`). `--primary` is the
+ *      seed-anchored step 9 in both modes so `bg-primary` / `text-primary`
+ *      mean the brand color, not a theme-flipped surface.
  *   2. `@theme {}` — registers `--radius` for utility generation.
  *   3. `@theme inline {}` — bridges the runtime semantic tokens into
  *      Tailwind v4's color registry as `--color-background`, etc., so
@@ -63,8 +63,8 @@
   --card-foreground: var(--palette-neutral-11);
   --popover: var(--palette-neutral-1);
   --popover-foreground: var(--palette-neutral-11);
-  --primary: var(--palette-primary-10);
-  --primary-foreground: var(--palette-primary-1);
+  --primary: var(--palette-primary-9);
+  --primary-foreground: #fff;
   --secondary: var(--palette-neutral-3);
   --secondary-foreground: var(--palette-neutral-11);
   --muted: var(--palette-neutral-3);
@@ -82,8 +82,8 @@
   --chart-5: var(--palette-danger-8);
   --sidebar: var(--palette-neutral-2);
   --sidebar-foreground: var(--palette-neutral-11);
-  --sidebar-primary: var(--palette-primary-10);
-  --sidebar-primary-foreground: var(--palette-primary-1);
+  --sidebar-primary: var(--palette-primary-9);
+  --sidebar-primary-foreground: #fff;
   --sidebar-accent: var(--palette-neutral-3);
   --sidebar-accent-foreground: var(--palette-neutral-11);
   --sidebar-border: var(--palette-neutral-4);
@@ -97,8 +97,8 @@
   --card-foreground: var(--palette-neutral-11);
   --popover: var(--palette-neutral-2);
   --popover-foreground: var(--palette-neutral-11);
-  --primary: var(--palette-primary-3);
-  --primary-foreground: var(--palette-primary-12);
+  --primary: var(--palette-primary-9);
+  --primary-foreground: #fff;
   --secondary: var(--palette-neutral-3);
   --secondary-foreground: var(--palette-neutral-11);
   --muted: var(--palette-neutral-3);
@@ -116,8 +116,8 @@
   --chart-5: var(--palette-danger-5);
   --sidebar: var(--palette-neutral-2);
   --sidebar-foreground: var(--palette-neutral-11);
-  --sidebar-primary: var(--palette-primary-3);
-  --sidebar-primary-foreground: var(--palette-primary-12);
+  --sidebar-primary: var(--palette-primary-9);
+  --sidebar-primary-foreground: #fff;
   --sidebar-accent: var(--palette-neutral-3);
   --sidebar-accent-foreground: var(--palette-neutral-11);
   --sidebar-border: var(--palette-neutral-4);
