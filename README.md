@@ -1,3 +1,5 @@
+<p align="center"><img src=".github/hero.svg" alt="theming" width="880"></p>
+
 # @hanzo/branding
 
 A theming and component toolkit for building white-label apps on @hanzo/gui. Provides generation of Tailwind tokens expected by shadcn for compatibility with previous systems. Provide seed colors, get a complete design system.
