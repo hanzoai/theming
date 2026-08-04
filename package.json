@@ -2,45 +2,52 @@
   "name": "@hanzo/theming",
   "version": "7.3.1",
   "description": "Theme engine, palette generation, and themed components for Hanzo-powered apps",
+  "type": "module",
   "exports": {
-    "./hanzogui-config": {
-      "types": "./hanzogui/create-config.d.ts",
-      "import": "./hanzogui/create-config.js"
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js"
     },
-    "./themed-components": {
-      "types": "./hanzogui/components/index.d.ts",
-      "import": "./hanzogui/components/index.js"
+    "./css": {
+      "types": "./css/index.d.ts",
+      "import": "./css/index.js"
     },
-    "./hanzogui-config-defaults": {
-      "types": "./hanzogui/defaults/index.d.ts",
-      "import": "./hanzogui/defaults/index.js"
+    "./semantic.css": "./css/semantic.css",
+    "./gui": {
+      "types": "./gui/index.d.ts",
+      "import": "./gui/index.js"
     },
-    "./shadcn-semantic-tw-colors.css": "./hanzo-ui/shadcn-semantic-colors.css"
+    "./gui/components": {
+      "types": "./gui/components/index.d.ts",
+      "import": "./gui/components/index.js"
+    },
+    "./gui/defaults": {
+      "types": "./gui/defaults/index.d.ts",
+      "import": "./gui/defaults/index.js"
+    }
   },
   "bin": {
-    "generate-palettes": "./hanzo-ui/generate-palettes.js"
+    "generate-palettes": "./css/generate-palettes.js"
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "tc": "tsc --noEmit",
-    "build": "rm -rf dist && tsc && tsup src/hanzo-ui/generate-palettes.ts --format cjs,esm --dts --outDir dist/hanzo-ui && cp src/hanzo-ui/shadcn-semantic-colors.css dist/hanzo-ui/ && node scripts/prepare-dist.mjs",
+    "typecheck": "tsgo --noEmit",
+    "build": "rm -rf dist && tsgo && node scripts/prepare-dist.mjs",
     "pub": "./scripts/publish.sh"
   },
   "peerDependencies": {
-    "@hanzogui/animations-react-native": ">=102.0.0-rc.41-hanzoai.1 <103.0.0",
-    "@hanzogui/config-default": ">=102.0.0-rc.41-hanzoai.1 <103.0.0",
-    "@hanzogui/shorthands": ">=102.0.0-rc.41-hanzoai.1 <103.0.0",
-    "@hanzogui/theme-builder": ">=102.0.0-rc.41-hanzoai.1 <103.0.0",
-    "@hanzogui/web": ">=102.0.0-rc.41-hanzoai.1 <103.0.0",
-    "hanzogui": ">=102.0.0-rc.41-hanzoai.1 <103.0.0",
+    "@hanzo/gui": "^8.0.1",
+    "@hanzogui/shorthands": "^8.0.0",
+    "@hanzogui/theme-builder": "^8.0.0",
+    "@hanzogui/web": "^8.0.0",
     "react": ">=18"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
     "@types/react": "^19.2.4",
-    "tsup": "^8.0.0",
+    "@typescript/native-preview": "^7.0.0-dev.20260707.2",
     "typescript": "^5.9.3"
   },
   "author": "Hanzo AI",

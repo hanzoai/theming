@@ -1,6 +1,14 @@
 /**
- * Default component size scale (non-linear, for button heights, input heights, etc.)
- * and layout spacing scale (linear 4px grid, for padding/margin/gap).
+ * The default token scales `createGuiConfig` hands to `@hanzo/gui`.
+ *
+ * Raw numbers, not pre-built token objects: `createGui` runs them through
+ * `createVariables` itself, which is why nothing here needs a config package
+ * to construct them.
+ *
+ *   size    component heights (non-linear — buttons, inputs, rows)
+ *   space   layout spacing (linear 4px grid — padding, margin, gap)
+ *   radius  corner rounding
+ *   zIndex  stacking bands
  */
 
 export const DEFAULT_SIZE = {
@@ -78,4 +86,29 @@ export const DEFAULT_SPACE = {
   '-$10': -40,
   '-$11': -44,
   '-$12': -48,
+}
+
+export const DEFAULT_RADIUS = {
+  0: 0,
+  1: 3,
+  2: 5,
+  3: 7,
+  4: 9,
+  5: 10,
+  6: 16,
+  7: 19,
+  8: 22,
+  9: 26,
+  10: 34,
+  11: 42,
+  12: 50,
+}
+
+export const DEFAULT_Z_INDEX = {
+  0: 0,
+  1: 100,
+  2: 200,
+  3: 300,
+  4: 400,
+  5: 500,
 }

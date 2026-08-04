@@ -1,4 +1,4 @@
-import type { ThemesConfig } from '../../types'
+import type { ThemesConfig } from '../../types.js'
 
 export const DEFAULT_SEEDS: Required<ThemesConfig> = {
   neutral:   { seed: '#808080' },

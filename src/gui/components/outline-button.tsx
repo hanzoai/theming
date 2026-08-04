@@ -1,4 +1,4 @@
-import { Text, XStack } from 'hanzogui'
+import { Text, XStack } from '@hanzo/gui'
 
 const OutlineButton: React.FC<{
   children: React.ReactNode

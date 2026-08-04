@@ -1,4 +1,4 @@
-import { XStack } from 'hanzogui'
+import { XStack } from '@hanzo/gui'
 
 // A borderless button that reveals border + bg tint on hover/press.
 //

@@ -1,7 +1,7 @@
 /**
- * Generate Radix-style 12-step color palettes.
+ * Generate 12-step color palettes.
  *
- * Two kinds of palette, both following the Radix semantic scale:
+ * Two kinds of palette, both walking the same semantic scale:
  *
  *   Step  Role
  *   ────  ────────────────────────────
@@ -25,13 +25,13 @@
  * ACCENT palette — a full 12-step scale from an accent seed. Steps 1–8
  * use the accent hue at progressively increasing saturation; step 9 is
  * the literal seed; steps 10–12 blend toward the scheme foreground.
- * Mapped to $color1…$color12 by Hanzogui's default template.
+ * `createThemes` maps these onto $color1…$color12.
  *
  * Components use $grey for surfaces/borders/text and $color for accent
  * fills/hover/press — both available in every theme via one <Theme> wrapper.
  */
 
-import type { Palette12, ThemeDesc, ThemeSeed } from './types'
+import type { Palette12, ThemeDesc, ThemeSeed } from './types.js'
 
 // ── hex/hsl helpers (zero deps) ──────────────────────────────
 
@@ -95,8 +95,8 @@ function lerp(a: number, b: number, t: number): number {
 
 /**
  * Target lightness for the 12-step neutral ramp.
- * Tuned to match Radix's grey scale: subtle surface differences at the
- * bg end, clear border band in the middle, readable text at the fg end.
+ * Tuned for subtle surface differences at the bg end, a clear border band
+ * in the middle, and readable text at the fg end.
  */
 const NEUTRAL_L_DARK: readonly number[] = [
   0.067, 0.09, 0.12, 0.15, 0.19, 0.24,

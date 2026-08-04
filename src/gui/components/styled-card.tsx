@@ -1,4 +1,4 @@
-import { XStack, YStack, Text, type XStackProps } from 'hanzogui'
+import { XStack, YStack, Text, type XStackProps } from '@hanzo/gui'
 
 type StyledCardProps = {
   title: string

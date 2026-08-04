@@ -1,4 +1,4 @@
-import type { ThemesConfig } from '../types'
+import type { ThemesConfig } from '../types.js'
 
 export interface FontDef {
   family: string

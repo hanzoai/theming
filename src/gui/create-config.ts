@@ -5,24 +5,25 @@
  */
 
 import { createGui } from '@hanzo/gui'
-// @ts-ignore — createFont exists at runtime via @hanzogui/web but pnpm strict hoisting hides types
 import { createFont } from '@hanzogui/web'
 import { createThemes } from '@hanzogui/theme-builder'
 import { shorthands as baseShorthands } from '@hanzogui/shorthands/v4'
-import { getDefaultGuiConfig } from '@hanzogui/config-default'
 
-import { resolveThemeDesc } from '../palette-utils'
-import { DEFAULT_SEEDS } from './defaults/themes'
-import { DEFAULT_SIZE, DEFAULT_SPACE } from './defaults/spacing'
+import { resolveThemeDesc } from '../palette-utils.js'
+import { DEFAULT_SEEDS } from './defaults/themes.js'
+import {
+  DEFAULT_SIZE,
+  DEFAULT_SPACE,
+  DEFAULT_RADIUS,
+  DEFAULT_Z_INDEX,
+} from './defaults/tokens.js'
+import { DEFAULT_MEDIA } from './defaults/media.js'
 import {
   DEFAULT_BODY_FONT,
   DEFAULT_HEADING_FONT,
   DEFAULT_MONO_FONT,
-} from './defaults/fonts'
-import type { FontDef, GuiConfigOptions } from './types'
-import type { Palette12, ThemeSeed, ThemeDesc, ThemesConfig } from '../types'
-
-export type { FontDef, GuiConfigOptions, Palette12, ThemeSeed, ThemeDesc, ThemesConfig }
+} from './defaults/fonts.js'
+import type { GuiConfigOptions } from './types.js'
 
 // ────────────────────────────────────────────────────────────
 // Type augmentation — activates when this module is imported.
@@ -197,15 +198,6 @@ export function createGuiConfig(options: GuiConfigOptions = {}) {
     },
   })
 
-  // Tokens
-  const _defaultConfig = getDefaultGuiConfig('web')
-  const tokens = {
-    size: sizeOverride ?? DEFAULT_SIZE,
-    space: spaceOverride ?? DEFAULT_SPACE,
-    radius: _defaultConfig.tokens.radius,
-    zIndex: _defaultConfig.tokens.zIndex,
-  }
-
   // Fonts — null or omitted = default
   const fonts = fontsConfig ?? {}
   const body = fonts.body ?? DEFAULT_BODY_FONT
@@ -214,13 +206,18 @@ export function createGuiConfig(options: GuiConfigOptions = {}) {
 
   return createGui({
     themes,
-    tokens,
+    tokens: {
+      size: sizeOverride ?? DEFAULT_SIZE,
+      space: spaceOverride ?? DEFAULT_SPACE,
+      radius: DEFAULT_RADIUS,
+      zIndex: DEFAULT_Z_INDEX,
+    },
     fonts: {
       body: createFont(body),
       heading: createFont(heading),
       mono: createFont(mono),
     },
-    media: _defaultConfig.media,
+    media: DEFAULT_MEDIA,
     shorthands,
     selectionStyles: (theme: Record<string, string>) =>
       theme.color5

@@ -1,11 +1,12 @@
 #!/usr/bin/env node
-// Prepares dist/ for publish: writes a cleaned package.json plus README + LICENSE,
-// so that `pnpm publish` (with publishConfig.directory: "dist") finds a complete
+// Prepares dist/ for publish: renders the semantic stylesheet, marks the CLI
+// executable, and writes a cleaned package.json plus README + LICENSE, so that
+// `pnpm publish` (with publishConfig.directory: "dist") finds a complete
 // package root inside dist/.
 
 import fs from 'node:fs'
 import path from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const dist = path.join(root, 'dist')
@@ -14,6 +15,13 @@ if (!fs.existsSync(dist)) {
   console.error('dist/ does not exist — run the rest of the build first')
   process.exit(1)
 }
+
+// semantic.css is emitted from the same map the generator exports, so the
+// shipped stylesheet and the programmatic API can never drift apart.
+const { generateSemanticCss } = await import(pathToFileURL(path.join(dist, 'css/semantic.js')))
+fs.writeFileSync(path.join(dist, 'css/semantic.css'), generateSemanticCss())
+
+fs.chmodSync(path.join(dist, 'css/generate-palettes.js'), 0o755)
 
 const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'))
 

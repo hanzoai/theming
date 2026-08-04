@@ -5,7 +5,7 @@
  * by passing a fonts object to createGuiConfig().
  */
 
-import type { FontDef } from '../types'
+import type { FontDef } from '../types.js'
 
 export const DEFAULT_BODY_FONT: FontDef = {
   family: 'ui-sans-serif, system-ui, -apple-system, sans-serif',
