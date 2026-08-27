@@ -3,4 +3,3 @@ dist/
 *.tsbuildinfo
 *.d.ts.map
 *.js.map
-CLAUDE.md
