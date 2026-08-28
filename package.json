@@ -38,7 +38,7 @@
     "pub": "./scripts/publish.sh"
   },
   "peerDependencies": {
-    "@hanzo/gui": "^8.0.1",
+    "@hanzo/gui": ">=8.3.0",
     "@hanzogui/shorthands": "^8.0.0",
     "@hanzogui/theme-builder": "^8.0.0",
     "@hanzogui/web": "^8.0.0",
@@ -57,5 +57,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "packageManager": "pnpm@11.24.0"
 }
