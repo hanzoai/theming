@@ -39,15 +39,15 @@
   },
   "peerDependencies": {
     "@hanzo/gui": ">=8.3.0",
-    "@hanzogui/shorthands": "^8.0.0",
-    "@hanzogui/theme-builder": "^8.0.0",
-    "@hanzogui/web": "^8.0.0",
-    "react": ">=18"
+    "@hanzogui/shorthands": "8.3.1",
+    "@hanzogui/theme-builder": "8.3.1",
+    "@hanzogui/web": "8.3.1",
+    "react": ">=19.2.8"
   },
   "devDependencies": {
-    "@types/node": "^25.6.0",
-    "@types/react": "^19.2.4",
-    "typescript": "^5.9.3"
+    "@types/node": "26.4.0",
+    "@types/react": "19.2.18",
+    "typescript": "7.0.2"
   },
   "author": "Hanzo AI",
   "license": "MIT",
