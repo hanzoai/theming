@@ -1,5 +1,7 @@
 # @hanzo/theming
 
+[![Open in Hanzo](https://hanzo.app/badges/open-in-hanzo.svg)](https://hanzo.app/dev/open?repo=github.com/hanzoai/theming&ref=main&action=open) [![Edit with Hanzo](https://hanzo.app/badges/edit-with-hanzo.svg)](https://hanzo.app/dev/open?repo=github.com/hanzoai/theming&ref=main&action=edit)
+
 A theming toolkit for white-label apps on `@hanzo/gui`. Provide seed colors, get
 a complete design system: 12-step palettes, a `@hanzo/gui` config, themed
 components, and plain CSS custom properties.
